@@ -20,6 +20,10 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Can pop up in a separate window if a GUI program or other.
+/set SHELL=/bin/bash
+/set TZ=EST5EDT
+
 /clock %a %I:%M %P
 /more off
 /redef on
@@ -45,7 +49,6 @@
 /set snarf=on
 /set tabsize=4
 /set textdiv=off
-/set tzlocal=EST
 /set warn_5keys=off
 /set warn_curly_re=on
 /set warn_status=off
@@ -53,13 +56,6 @@
 /set wrapspace=2
 
 /eval /set nl=$[char(10)]
-
-/def -f host_def = \
- /quote /set hostname=!hostname
-/host_def
-
-;;; Can pop up in a separate window if a GUI program or other.
-/set SHELL=/bin/bash
 
 /eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/%%F_[W].log}
 
@@ -73,19 +69,10 @@
 /require alias.tf
 /require at.tf
 /require color.tf
-/require complete.tf
 /require kbbind.tf
-/require kbfunc.tf
-/require kbregion.tf
-/require psh.tf
-/require quoter.tf
-/require relog.tf
 /require savehist.tf
 /require textutil.tf
-/require tools.tf
-/require tr.tf
 /require world-q.tf
-
 
 /eval /def MACROFILE  = %{PREFDIR}/macros.tf
 /eval /def HILITEFILE = %{PREFDIR}/hilite.tf

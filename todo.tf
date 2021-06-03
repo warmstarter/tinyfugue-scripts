@@ -9,9 +9,6 @@
 ; https://tinyurl.com/yb42ebbv
 ; https://tinyurl.com/ycnbuz3j
 
-;; 'tabbed'
-; https://tinyurl.com/y8gesa8w
-
 ;; columns, text formatting
 ; https://tinyurl.com/ybvwadjx
 
@@ -53,7 +50,6 @@
 ;; tfrc
 ; figure out nl
 ; figure out hostname
-; figure out where to put shell
 ;;;
 ; add a changelog
 ; uses changes.tf from stdlib
