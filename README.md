@@ -1,0 +1,2 @@
+# tinyfugue-scripts
+Tinyfugue setup
