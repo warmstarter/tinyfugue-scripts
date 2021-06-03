@@ -1,0 +1,127 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;                           TFRC file                             ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+/set LASTMOD=TFRC last modified: 06/02/2021
+
+/def TFLIBDIR=/usr/local/share/tf-lib
+/set TFDIR=~/tf
+/eval /cd %{TFDIR}
+/eval /set BINDIR=%{TFDIR}/bin
+/eval /set LIBDIR=%{TFDIR}/lib
+/eval /set LOGDIR=%{TFDIR}/logs
+/eval /set PREFDIR=%{TFDIR}/prefs
+/eval /set TFPREFIX=%{TFDIR}/tiny.
+/eval /set TFPATH=%{TFLIBDIR} %{LIBDIR} %{PREFDIR}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; setting TF system defaults I like
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+/clock %a %I:%M %P
+/more off
+/redef on
+/visual on
+
+/set cleardone=on
+/set default_charset=UTF-8
+/set defcompile=on
+/set histsize=10000
+/histsize -l 5000
+/histsize -i 1000
+/histsize -g 5000
+/set insert=on
+/set isize=8
+/set keepalive=on
+/set maildelay=0
+/set max_trig=20000
+/set oldslash=off
+/set pedantic=off
+/set ptime=0
+/set quiet=on
+/set shpause=off
+/set snarf=on
+/set tabsize=4
+/set textdiv=off
+/set tzlocal=EST
+/set warn_5keys=off
+/set warn_curly_re=on
+/set warn_status=off
+/set wraplog=off
+/set wrapspace=2
+
+/eval /set nl=$[char(10)]
+
+/def -f host_def = \
+ /quote /set hostname=!hostname
+/host_def
+
+;;; Can pop up in a separate window if a GUI program or other.
+/set SHELL=/bin/bash
+
+/eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/%%F_[W].log}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; loading lib programs I like
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+/require activity_status2.tf
+/require alias.tf
+/require at.tf
+/require color.tf
+/require complete.tf
+/require kbbind.tf
+/require kbfunc.tf
+/require kbregion.tf
+/require psh.tf
+/require quoter.tf
+/require relog.tf
+/require savehist.tf
+/require textutil.tf
+/require tools.tf
+/require tr.tf
+/require world-q.tf
+
+
+/eval /def MACROFILE  = %{PREFDIR}/macros.tf
+/eval /def HILITEFILE = %{PREFDIR}/hilite.tf
+/eval /def GAGFILE    = %{PREFDIR}/gag.tf
+/eval /def TRIGFILE   = %{PREFDIR}tfprefs/trig.tf
+/eval /def BINDFILE   = %{PREFDIR}/bind.tf
+/eval /def HOOKFILE   = %{PREFDIR}/hook.tf
+/eval /def WORLDFILE  = %{PREFDIR}/world.tf
+;/def LOGFILE    = tiny.log
+
+/loadworld
+/loadhilite
+/loadgag
+/loaddef
+/loadbind
+/loadtrig
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+/set LASTMOD
+
+/eval /echo %% Loaded libraries are: %{_loaded_libs}
+
+;;; Run help-list once each sessions
+/helplist
+
+; Start the idler
+/idler
+
+; Find a way so that the timestamp doesn't get sent to the Dummy world.
+/inflog_hourly
+/inflog_status
+
+/eval /set savehist_dir=${LOGDIR}/histories
+/load_histories
+/repeat -0:10 i /save_histories
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                            END OF FILE                            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

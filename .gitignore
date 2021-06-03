@@ -1,0 +1,5 @@
+lib/unused
+logs/auto/*
+logs/histories/*
+prefs/world.tf
+tiny.note
