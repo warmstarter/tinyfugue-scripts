@@ -132,6 +132,8 @@
   /endif%;\
   /unset _repost_file
 
+;;; " Fix for vim syntax highlighting
+
 /def -i _repost_message_foregrounded=\
   /echo -p %% To change the output prefix, type "@{B}PREFIX <new prefix>@{n}".%;\
   /echo -p %% To exit, type "@{B}.@{n}".

@@ -2,14 +2,13 @@
 ;;;                           TFRC file                             ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-/set LASTMOD=TFRC last modified: 06/02/2021
+/set LASTMOD=TFRC last modified: 06/18/2021
 
 /def TFLIBDIR=/usr/local/share/tf-lib
 /set TFDIR=~/tf
 /eval /cd %{TFDIR}
 /eval /set BINDIR=%{TFDIR}/bin
 /eval /set LIBDIR=%{TFDIR}/lib
-/eval /set LOGDIR=%{TFDIR}/logs
 /eval /set PREFDIR=%{TFDIR}/prefs
 /eval /set TFPREFIX=%{TFDIR}/tiny.
 /eval /set TFPATH=%{TFLIBDIR} %{LIBDIR} %{PREFDIR}
@@ -37,7 +36,7 @@
 /histsize -i 1000
 /histsize -g 5000
 /set insert=on
-/set isize=8
+/set isize=10
 /set keepalive=on
 /set maildelay=0
 /set max_trig=20000
@@ -50,38 +49,67 @@
 /set tabsize=4
 /set textdiv=off
 /set warn_5keys=off
-/set warn_curly_re=on
+/set warn_curly_re=off
 /set warn_status=off
 /set wraplog=off
 /set wrapspace=2
 
 /eval /set nl=$[char(10)]
 
-/eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/%%F_[W].log}
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;; loading lib programs I like
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-/require activity_status2.tf
+/require activity_status.tf
+;/require activity_status2.tf
 /require alias.tf
 /require at.tf
+;/require changes.tf
 /require color.tf
+/require complete.tf
+;/require cylon.tf
+;/require factoral.tf
+;/require filexfer.tf
+;/require finger.tf
+;/require grep.tf
+;/require hanoi.tf
 /require kbbind.tf
+/require kbfunc.tf
+;/require kbregion.tf
+;/require kbstack.tf
+;/require kb-emacs.tf
+;/require kb-old.tf
+/require lisp.tf
+;/require map.tf
+;/require pcmd.tf
+;/require psh.tf
+;/require quoter.tf
+;/require relog.tf
+;/require rwho.tf
 /require savehist.tf
+;/require self.tf
+;/require spc-page.tf
+;/require spedwalk.tf
+;/require spell.tf
+/require stack-q.tf
+;/require testcolor.tf
+/require textencode.tf
 /require textutil.tf
+/require tfstatus.tf
+;/require tick.tf
+;/require tintin.tf
+;/require tools.tf
+;/require tr.tf
+;/require watch.tf
 /require world-q.tf
 
+
+/eval /def LOGDIR     = %{TFDIR}/logs
 /eval /def MACROFILE  = %{PREFDIR}/macros.tf
 /eval /def HILITEFILE = %{PREFDIR}/hilite.tf
 /eval /def GAGFILE    = %{PREFDIR}/gag.tf
-/eval /def TRIGFILE   = %{PREFDIR}tfprefs/trig.tf
+/eval /def TRIGFILE   = %{PREFDIR}/trig.tf
 /eval /def BINDFILE   = %{PREFDIR}/bind.tf
 /eval /def HOOKFILE   = %{PREFDIR}/hook.tf
 /eval /def WORLDFILE  = %{PREFDIR}/world.tf
-;/def LOGFILE    = tiny.log
+
+/eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/%%F_[W].log}
 
 /loadworld
 /loadhilite
@@ -101,13 +129,15 @@
 ; Start the idler
 /idler
 
-; Find a way so that the timestamp doesn't get sent to the Dummy world.
 /inflog_hourly
 /inflog_status
 
 /eval /set savehist_dir=${LOGDIR}/histories
 /load_histories
 /repeat -0:10 i /save_histories
+
+;;; This sets the title of hterm from within xterm
+;;; /def -i xtitle = /echo -r \033Ptmux;\033\033]0;%*\007\033\\
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                            END OF FILE                            ;;

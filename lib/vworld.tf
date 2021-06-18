@@ -95,6 +95,8 @@
     /vw_write %{vw_to}=%%{*}%;\
   /return %?
 
+;;; " fix for vim syntax highlighting
+
 ;;; vw_isconnected(<world>)
 ; Returns whether or not the virtual world specified is connected.
 ; Required because is_connected always returns 0 for connectionless worlds.

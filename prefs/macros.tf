@@ -1,9 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;  Macros to load
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 /require allmu.tf
 /require assoc.tf
 /require atquit.tf
@@ -23,4 +17,6 @@
 /require rwhen.tf
 /require srec.tf
 /require squish.tf
+/require status.tf
+/require urlwatch.tf
 /require vworld.tf

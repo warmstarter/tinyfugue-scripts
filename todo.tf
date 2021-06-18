@@ -18,17 +18,8 @@
 ;; timestampping
 ; https://tinyurl.com/ybpx6q4c
 
-;; dummy world variant
-; https://tinyurl.com/ybvoj3cg
-
-;; status bar and evaluating MUSH info
-; https://tinyurl.com/yj3b6k89
-
 ;; multi-line status
 ; https://tinyurl.com/yfoxzpk6
-
-;; infinilog
-; check out configs
 
 ;; kbdoublestack
 ; see if there's a way to see when you have something in your buffer or not
@@ -46,6 +37,7 @@
 ; script_<name>_<info> is there, check out kaispell to see what can be done with it.
 ; Script info ... reconsider naming scheme here, maybe drop the script_
 ; /echo -e -aCgreen kaispell> Version %kaispell_version
+; Or get rid of this?
 
 ;; tfrc
 ; figure out nl
@@ -70,7 +62,6 @@
 ;;; go over special variables
 ;;; Check out the nice prints in tiny.macros.organize.tf
 ;;; figure out why it's escape sometimes and alt other times
-;;; Status prompt
 ;;; Variables
 ;;; aliases and maybe move things wholly into them
 
@@ -81,13 +72,22 @@
 ; Investigate bash and vi bindings
 ; Perhaps make multiple menus
 ; Perhaps separate actual bindings
-
-;;;Config and Help
-; break out config options and help options into .tfrc as an option
-; help into a separate help file?
+; check out bind-vi
 
 ;;; atquit
 ; redo history files with atquit in mind, see what's still needed
 
 ;;; Cat and recall and such
 ; play around with making this work properly for quoting from logs
+
+;;; url-watch
+; configure, add help, etc..
+; url blanking an better regexp
+; split per world, per day or such
+; look for duplicates
+
+;;; status
+; work on this
+
+;;; vworld
+; merge with tabs
