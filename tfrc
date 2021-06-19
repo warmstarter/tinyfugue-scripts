@@ -2,7 +2,7 @@
 ;;;                           TFRC file                             ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-/set LASTMOD=TFRC last modified: 06/18/2021
+/set LASTMOD=TFRC last modified: 06/19/2021
 
 /def TFLIBDIR=/usr/local/share/tf-lib
 /set TFDIR=~/tf
@@ -57,48 +57,47 @@
 /eval /set nl=$[char(10)]
 
 /require activity_status.tf
-;/require activity_status2.tf
+;/require activity_status2.tf -- unneeded, status.tf is a custom version of this
 /require alias.tf
 /require at.tf
-;/require changes.tf
+;/require changes.tf -- unneeded, tf isn't getting updated anymore so no need to look at this
 /require color.tf
 /require complete.tf
-;/require cylon.tf
-;/require factoral.tf
-;/require filexfer.tf
-;/require finger.tf
-;/require grep.tf
-;/require hanoi.tf
+;/require cylon.tf -- unneeded, demo
+;/require factoral.tf -- unneded, code example
+;/require filexfer.tf -- unneeded, MOO only
+;/require finger.tf -- unneeded, open finger systems not really a thing anymore
+;/require grep.tf -- unneeded, conflicts with textutil.tf
+;/require hanoi.tf -- unneeded, game
 /require kbbind.tf
 /require kbfunc.tf
 ;/require kbregion.tf
-;/require kbstack.tf
-;/require kb-emacs.tf
-;/require kb-old.tf
+;/require kbstack.tf -- unneeded, kbdoublestack.tf is an enhanced version of this
+;/require kb-emacs.tf -- unneeded, no use for emacs bindings
+;/require kb-old.tf -- unneeded, no use for old bindings
 /require lisp.tf
-;/require map.tf
-;/require pcmd.tf
+;/require map.tf -- unneeded, map based
+;/require pcmd.tf -- unneeded, MUD only
 ;/require psh.tf
 ;/require quoter.tf
 ;/require relog.tf
-;/require rwho.tf
+;/require rwho.tf -- unneeded, no use for twho
 /require savehist.tf
-;/require self.tf
-;/require spc-page.tf
-;/require spedwalk.tf
-;/require spell.tf
+;/require self.tf -- unneded, code example
+;/require spc-page.tf -- unneeded, default behavior is preferred
+;/require spedwalk.tf -- unneeded, map based
+;/require spell.tf -- unneeded, kaispell.tf is enhanced version of this
 /require stack-q.tf
 ;/require testcolor.tf
 /require textencode.tf
 /require textutil.tf
 /require tfstatus.tf
-;/require tick.tf
-;/require tintin.tf
+;/require tick.tf -- unneeded, MUD only
+;/require tintin.tf -- unneeded, tintin aliases, not very featureful
 ;/require tools.tf
 ;/require tr.tf
-;/require watch.tf
+;/require watch.tf -- unneeded, MUD only
 /require world-q.tf
-
 
 /eval /def LOGDIR     = %{TFDIR}/logs
 /eval /def MACROFILE  = %{PREFDIR}/macros.tf

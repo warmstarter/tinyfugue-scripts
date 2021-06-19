@@ -18,7 +18,7 @@
 /status_rm kbnum
 
 /set status_attr BCmagenta
-/set status_height=2
+/set status_height=3
 
 /status_edit @more:8:BrCwhite
 /status_edit @world:12:BCblue

@@ -3,9 +3,10 @@
 /set kaispell_author=Chris "Kai" Frederick - kaispell@neofin.net
 /set kaispell_info=Kai's on-the-fly spell checker for buffer
 /set kaispell_url=http://www.neofin.net/kaispell
-/set kaispell_version=1.3.0
+/set kaispell_version=1.4.1
 
 /require helplist.tf
+/require status.tf
 
 /help_add /help_kaispell Fix spelling errors in pose
 
@@ -16,10 +17,6 @@
      /echo  %;\
      /echo  This will spell check your input to TinyFugue on the fly.  Misspelled%;\
      /echo  words are displayed on the status line in visual mode.%;\
-     /echo  %;\
-     /echo  The world name is trimmed to 10 chars (adjustable on the /edit_status%;\
-     /echo  line) to make room.  I'd love to do it on the input line, but I doubt%;\
-     /echo  it's possible without modifying TF.%;\
      /echo  %;\
      /echo  Alt-S will feed the input through ispell. This allows you to get%;\
      /echo  suggestions and make corrections, as well as add words to the dictionary.
@@ -221,7 +218,7 @@
 /endif
 
 /if (kaispell_resultsbar & !kaispell_autohide) \
-  /set status_height=2 %; \
+  /set status_height=3 %; \
 /endif
 
 ;; Keybindings

@@ -3,7 +3,7 @@
 /set infinilog_author=Sketch@M*U*S*H
 /set infinilog_info=Auto-log upon connection a world and roll over to a new log each day
 /set infinilog_url=https://github.com/Sketch/tinyfugue-scripts
-/set infinilog_version=1.0.0
+/set infinilog_version=1.0.1
 
 ; Important notes:
 ;  This script overrides the built-in /dc and /log so that:
@@ -60,6 +60,8 @@
 ; Improvements to be made:
 ; * The timers break during Daylight Saving Time transitions.
 ; * TinyFugue doesn't automatically create directories for /log.
+
+/require status.tf
 
 /require assoc.tf
 /require lisp.tf

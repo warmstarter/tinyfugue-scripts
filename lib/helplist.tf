@@ -11,6 +11,7 @@
   /if (strstr(help_list,textencode({*})) == -1) \
     /test help_list := strcat(help_list," ",textencode({*}))%;\
   /endif
+
 /def -i help-list=\
   /if ({#}==0) \
     /if (help_list !~ "") \

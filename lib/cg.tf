@@ -3,7 +3,7 @@
 /set cg_author=
 /set cg_info=Connects to a world based on prefix match
 /set cg_url=https://github.com/Sketch/tinyfugue-scripts
-/set cg_version=1.0.0
+/set cg_version=1.0.1
 
 /require helplist.tf
 
@@ -11,11 +11,7 @@
 
 /def -i help_cg = \
   /echo -aB cg help:%;\
-    /echo /cg <world>           Switch to first connect world matching prefix %;\
-    /echo Adds a /cg command. '/cg foo' will attempt to switch to the first %;\
-    /echo connected world that prefix-matches 'foo', or failing that, the %;\
-    /echo first connected world with 'foo' anywhere in the name. If neither %;\
-    /echo exists, it prints an error to that effect. %;\
+    /echo /cg <world>          Switch to first connected world matching prefix
 
 /def -i cg=\
   /let mylist=$(/listsockets -s)%;\
