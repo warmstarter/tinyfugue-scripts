@@ -11,5 +11,5 @@
 /def uptime = \
     /let seconds=$[time() - tf_start_time] %;\
     /echo % Your tf has been running for \
-      $[seconds/86400] days $[mod(seconds/3600,24)] hours \
+      $[trunc(seconds/86400)] days $[mod(seconds/3600,24)] hours \
       $[mod(seconds/60,60)] mins $[mod(seconds,60)] secs.

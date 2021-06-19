@@ -30,7 +30,7 @@
 /histsize -i 1000
 /histsize -g 5000
 /set insert=on
-/set isize=10
+/set isize=12
 /set keepalive=on
 /set maildelay=0
 /set max_trig=20000

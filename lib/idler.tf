@@ -3,7 +3,7 @@
 /set idler_author=Gwen Morse - Christian J. Robinson - heptite@gmail.com
 /set idler_info=TinyFugue no-idle script.
 /set idler_url=
-/set idler_version=2.6.0
+/set idler_version=2.8.0
 
 ; Set the variable 'Idler_Exclude_Worlds' with a | between each world name to
 ; exclude worlds from the idle trigger /send command.  Eg:
@@ -15,10 +15,18 @@
 
 /def -i help_idler=\
      /echo -aB Idler help:%;\
+     /echo /chkidle            Checks to see if the idle loop is running.%; \
      /echo /idler              Turns on the idler to send @@ to at periodic intervals%;\
      /echo /noidle             Turns off the idle loop
 
 /eval /set idlerpid $[idlerpid ? : -1]
+
+/def -i chkidle = \
+  /if ({idlerpid} != -1) \
+    /echo %% No-Idle loop is running. %; \
+  /elfse \
+    /echo %% No-Idle loop is not running. %; \
+  /endif
 
 /def -i noidle = \
   /if ({idlerpid} != -1) \

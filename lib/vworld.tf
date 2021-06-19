@@ -358,7 +358,31 @@
 ; This isn't updating properly on things related to MORE and such.
 ;;; QBFreak's tab extensions - 3/1/2006 - qbfrea@qbfreak.net
 /status_add -r2 -B vwtabs
-/def -qi -Fp1 -hACTIVITY|BGTEXT|MORE|WORLD|CONNECT|DISCONNECT vw_update_status = /status_edit -r2 vwtabs
+/def -qi -Fp2147483647 -hCONNECT|DISCONNECT vw_update_status_a = /status_edit -r2 vwtabs
 ;/def -p0 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
 ;/def -Fp2147483647 -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT vw_update_status = /status_edit -r2 vwtabs
 ;/def -Fp2147483647 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
+
+/def -i vw_update_status = \
+    /set vwtabs=$(/vw_build_tabs)
+
+/def -qi -Fp2147483647 -hMORE vw_update_status_more = \
+    /repeat -0 1 /vw_update_status
+
+/def -qi -Fp2147483647 -mglob -h'WORLD' vw_update_status_fg = \
+    /repeat -0 1 /vw_update_status
+
+/def -qi -Fp2147483647 -hPREACTIVITY vw_update_status_preactivity_hook = \
+    /vw_update_status_delayed
+
+/def -qi -Fp2147483647 -hBGTEXT vw_update_status_bgtext_hook = \
+    /vw_update_status_delayed
+
+/def -qi vw_update_status_delayed = \
+    /if (moresize("") == 0 | mod(moresize(""), 50) == 0) \
+        /repeat -0 1 /vw_update_status%; \
+    /else \
+        /repeat -1 1 /vw_update_status%; \
+    /endif
+
+/vw_update_status
