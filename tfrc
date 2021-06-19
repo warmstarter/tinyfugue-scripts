@@ -71,16 +71,16 @@
 ;/require hanoi.tf -- unneeded, game
 /require kbbind.tf
 /require kbfunc.tf
-;/require kbregion.tf
+;/require kbregion.tf -- MAYBE -- look into other copy/paste options
 ;/require kbstack.tf -- unneeded, kbdoublestack.tf is an enhanced version of this
 ;/require kb-emacs.tf -- unneeded, no use for emacs bindings
 ;/require kb-old.tf -- unneeded, no use for old bindings
 /require lisp.tf
 ;/require map.tf -- unneeded, map based
 ;/require pcmd.tf -- unneeded, MUD only
-;/require psh.tf
-;/require quoter.tf
-;/require relog.tf
+;/require psh.tf -- unneeded, it just spawns from sh anyway
+;/require quoter.tf -- unneeded, macros should be loaded at the beginning
+;/require relog.tf -- unneeded, infinilog.tf handles logging things
 ;/require rwho.tf -- unneeded, no use for twho
 /require savehist.tf
 ;/require self.tf -- unneded, code example
@@ -88,14 +88,14 @@
 ;/require spedwalk.tf -- unneeded, map based
 ;/require spell.tf -- unneeded, kaispell.tf is enhanced version of this
 /require stack-q.tf
-;/require testcolor.tf
+/require testcolor.tf
 /require textencode.tf
 /require textutil.tf
 /require tfstatus.tf
 ;/require tick.tf -- unneeded, MUD only
 ;/require tintin.tf -- unneeded, tintin aliases, not very featureful
-;/require tools.tf
-;/require tr.tf
+/require tools.tf
+/require tr.tf
 ;/require watch.tf -- unneeded, MUD only
 /require world-q.tf
 

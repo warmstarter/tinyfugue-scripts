@@ -3,7 +3,7 @@
 /set repost_author=Sketch@M*U*S*H
 /set repost_info=Assists the user in reposting lines from logs
 /set repost_url= https://raw.github.com/Sketch/tinyfugue-scripts
-/set repost_version=1.0.0
+/set repost_version=1.1.0
 
 /require helplist.tf
 
@@ -52,7 +52,7 @@
 
 ; To-Do:
 ;  * Repost correctly when file found by wildcard
-;  * Give user tighter control of leading space when reposting.
+;  * Give user tighter control of leading space when reposting.1
 ;  * Add default directory option.
 ;  * Figure out how to /quote to virtual world without /fg it first, so that
 ;    a player's terminal isn't bombed by 300KB+ of logfile text at once.
@@ -62,8 +62,9 @@
 ;
 ; Notice: This script requires the 'cut' and 'nl' coreutils. (optionally 'ls')
 
-/require vworld.tf
 /require squish.tf
+/require vworld.tf
+
 /require stack-q.tf
 /require textencode.tf
 
@@ -192,3 +193,5 @@
   /elseif ({chosen} =~ '.') \
     /_repost_close_vworld %{1}%;\
   /endif
+
+;;; " fix for vim syntax highlighting

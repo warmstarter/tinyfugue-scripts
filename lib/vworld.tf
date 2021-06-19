@@ -1,6 +1,6 @@
 /loaded vworld.tf
 
-/set vworld_author=Cheetah@M*U*S*H + Tab Status
+/set vworld_author=Cheetah@M*U*S*H + Tab Status by NightMAREBot
 /set vworld_info=Handles virtual worlds
 /set vworld_url=https://github.com/Sketch/tinyfugue-scripts
 /set vworld_version=2.0.0
@@ -12,8 +12,8 @@
 
 /require status.tf
 
-/require textutil.tf
 /require textencode.tf
+/require textutil.tf
 
 ;;; /vw_create [-s<send_handler>] [-t<subtype>] <World Name>
 ; Creates a virtual world and ensures it's connected.
@@ -256,7 +256,6 @@
 
 
 ;;; the attributes to put before the fg, bg (no activity), or bg (has activity) world names
-;/set vw_tablist_fg_world_attrs=@{Cwhite,Cbgrgb001}
 /set vw_tablist_fg_world_attrs=@{Cyellow,Cbgrgb001}
 /set vw_tablist_bgworld_attrs=@{Ccyan,Cbgrgb001}
 /set vw_tablist_bgmore_world_attrs=@{Cbrightred,Cbgrgb001}
@@ -284,7 +283,7 @@
 ;;; should collapsed tabs with activity expand even if the world isn't active?
 /set vw_tablist_collapse_show_active=1
 
-
+;;; This might not be working that great
 /def vw_get_tablist_size=\
         /if (regmatch("vwtabs:([^:]*):", status_fields(2))) \
                 /return %P1 %;\
@@ -356,6 +355,7 @@
 
 /set status_var_vwtabs=vw_build_tabs()
 
+; This isn't updating properly on things related to MORE and such.
 ;;; QBFreak's tab extensions - 3/1/2006 - qbfrea@qbfreak.net
 /status_add -r2 -B vwtabs
 /def -qi -Fp1 -hACTIVITY|BGTEXT|MORE|WORLD|CONNECT|DISCONNECT vw_update_status = /status_edit -r2 vwtabs

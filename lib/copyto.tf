@@ -3,7 +3,7 @@
 /set cg_author=Walker@M*U*S*H
 /set cg_info=Copies objects from one world to another
 /set cg_url=https://github.com/Sketch/tinyfugue-scripts
-/set cg_version=1.0.0
+/set cg_version=1.0.1
 
 /require helplist.tf
 
@@ -12,7 +12,7 @@
 /def -i help_copyto = \
   /echo -aB copyto help:%;\
     /echo /copyto <world> <dbref>      Copies and onbject between worlds %;\
-    /echo This command is for movie code from one MUSH to another. %;\
+    /echo This command is for moving code from one MUSH to another. %;\
     /echo <world> is the TF defined named of the world you wish to copy to. %;\
     /echo <dbref> is the dbref number of the object on the current world. %;\
     /echo ex: /copyto Liberation #123 %;\
