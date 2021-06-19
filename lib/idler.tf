@@ -3,7 +3,7 @@
 /set idler_author=Gwen Morse - Christian J. Robinson - heptite@gmail.com
 /set idler_info=TinyFugue no-idle script.
 /set idler_url=
-/set idler_version=2.5.0
+/set idler_version=2.6.0
 
 ; Set the variable 'Idler_Exclude_Worlds' with a | between each world name to
 ; exclude worlds from the idle trigger /send command.  Eg:
@@ -54,3 +54,5 @@
     /send -w\$(/nth \%{i} \%{_worlds}) @@ %;\
   /repeat  -0:$[rand(5,15)]:$[rand(60)] 1 /_idler %;\
   /set idlerpid %?
+
+/idler

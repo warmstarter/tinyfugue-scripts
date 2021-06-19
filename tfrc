@@ -13,12 +13,6 @@
 /eval /set TFPREFIX=%{TFDIR}/tiny.
 /eval /set TFPATH=%{TFLIBDIR} %{LIBDIR} %{PREFDIR}
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;; setting TF system defaults I like
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;;; Can pop up in a separate window if a GUI program or other.
 /set SHELL=/bin/bash
 /set TZ=EST5EDT
@@ -125,9 +119,6 @@
 ;;; Run help-list once each sessions
 /helplist
 
-; Start the idler
-/idler
-
 /inflog_hourly
 /inflog_status
 
@@ -135,7 +126,7 @@
 /load_histories
 /repeat -0:10 i /save_histories
 
-;;; This sets the title of hterm from within xterm
+;;; This sets the title of hterm from within tmux
 ;;; /def -i xtitle = /echo -r \033Ptmux;\033\033]0;%*\007\033\\
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
