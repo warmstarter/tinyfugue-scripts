@@ -3,7 +3,7 @@
 /set vworld_author=Cheetah@M*U*S*H + Tab Status by NightMAREBot
 /set vworld_info=Handles virtual worlds
 /set vworld_url=https://github.com/Sketch/tinyfugue-scripts
-/set vworld_version=2.0.0
+/set vworld_version=2.1.0
 
 ;;;; Handle 'virtual' worlds.
 ;;;; This is a light API around connectionless sockets for adding, removing
@@ -139,7 +139,7 @@
 ;;; returns the base world name (stuff before the .)
 /def vw_tab_world=\
         /if (vw_exists({1})) \
-                /return substr({1}, 0, strchr({1},"\.")) %;\
+                /return substr({1}, 0, strchr({1},":")) %;\
         /else \
                 /return {1} %;\
         /endif
@@ -147,7 +147,7 @@
 ;;; returns the name of the tab (stuff after the .)
 /def vw_tab_name=\
         /if (vw_exists({1})) \
-                /return substr({1}, strchr({1},"\.")+1) %;\
+                /return substr({1}, strchr({1},":")+1) %;\
         /else \
                 /return "" %;\
         /endif
@@ -225,7 +225,7 @@
         /if (%1 =~ "-a") \
                 /let _inval=$(/listsockets -s) %; \
         /else \
-                /let _inval=$(/@listsockets -s -mregexp ^[^\.]+\$) %; \
+                /let _inval=$(/@listsockets -s -mregexp ^[^:]+\$) %; \
         /endif %; \
         /if (worldorder =~ "") \
                 /result "%_inval" %; \
@@ -283,14 +283,12 @@
 ;;; should collapsed tabs with activity expand even if the world isn't active?
 /set vw_tablist_collapse_show_active=1
 
-;;; This might not be working that great
 /def vw_get_tablist_size=\
-        /if (regmatch("vwtabs:([^:]*):", status_fields(2))) \
+        /if (regmatch("vw_tabs:([^:]*):", status_fields(2))) \
                 /return %P1 %;\
         /else \
                 /return columns() %;\
         /endif
-
 
 /def vw_build_tabs=\
 ;	Tweaked for QBFreak's sorted tab extensions 4/28/2017
@@ -300,7 +298,7 @@
 	/test _ret:="" %;\
 	/while ( _w !~ "" ) \
 		/test _ret := strcat(_ret, vw_tablist_world_sep_l)%;\
-		/let _tlist=$(/@listsockets -s -mregexp ^%_w\.) %;\
+		/let _tlist=$(/@listsockets -s -mregexp ^%_w:) %;\
 		/test _tlist := strcat(_w, " ", _tlist)%;\
 		/let _t=$(/first %_slist) %;\
 		/while ( _t !~ "" ) \
@@ -319,7 +317,7 @@
 				/test _ret_item := strcat(_ret_item, vw_tablist_bgworld_attrs )%;\
 			/endif %;\
 			/if (!is_open(_t)) /test _ret_item := strcat(_ret_item, vw_tablist_deadworld) %; /endif %;\
-			/test _ret_item := strcat(_ret_item, substr(_t, strchr(_t,"\.") > -1 ? strchr(_t,"\.")+1 : 0)) %;\
+			/test _ret_item := strcat(_ret_item, substr(_t, strchr(_t,":") > -1 ? strchr(_t,":")+1 : 0)) %;\
 			/test _mt := ""%;\
 			/if (_new > 0 & _new < 1000 & vw_tablist_show_lines) \
 				/test _mt := strcat(vw_tablist_more_l, _new, vw_tablist_more_r) %;\
@@ -353,36 +351,51 @@
         /endif %;\
 	/return tolower(substr({_dret}, _cutoff))
 
-/set status_var_vwtabs=vw_build_tabs()
+/set vw_tabs=
+
+/set status_var_vw_tabs=vw_build_tabs()
 
 ; This isn't updating properly on things related to MORE and such.
 ;;; QBFreak's tab extensions - 3/1/2006 - qbfrea@qbfreak.net
-/status_add -r2 -B vwtabs
-/def -qi -Fp2147483647 -hCONNECT|DISCONNECT vw_update_status_a = /status_edit -r2 vwtabs
-;/def -p0 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
-;/def -Fp2147483647 -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT vw_update_status = /status_edit -r2 vwtabs
+/status_add -r0 -B vw_tabs
+/def -Fp2147483647 -hACTIVITY|BGTEXT|MORE|WORLD vw_update_activity_status = /status_edit -r0 vw_tabs
+;/def -Fp1 -hCONNECT|MORE vw_update_activity_edit = /status_edit -r1 vw_tabs
+/def -p0 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
+;/def -Fp2147483647 -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT vw_update_activity = /status_edit -r2 vw_tabs
 ;/def -Fp2147483647 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
 
-/def -i vw_update_status = \
-    /set vwtabs=$(/vw_build_tabs)
+/def -i vw_update_activity = \
+    /if (vw_update_activity_pid) \
+        /kill %vw_update_activity_pid%; \
+        /set vw_update_activity_pid=0%; \
+    /endif%; \
+    /set vw_tabs=$(/vw_build_tabs)
 
-/def -qi -Fp2147483647 -hMORE vw_update_status_more = \
-    /repeat -0 1 /vw_update_status
+/def -qi -Fp2147483647 -mglob -h'WORLD' vw_update_activity_fg = \
+    /repeat -0 1 /vw_update_activity
 
-/def -qi -Fp2147483647 -mglob -h'WORLD' vw_update_status_fg = \
-    /repeat -0 1 /vw_update_status
+/def -E'${world_name} !~ fg_world() & moresize("")' \
+  -qi -Fp2147483647 -mglob -h'DISCONNECT' \
+    vw_update_activity_disconnect_hook = \
+        /activity_queue_hook ${world_name}%; \
+        /vw_update_activity
 
-/def -qi -Fp2147483647 -hPREACTIVITY vw_update_status_preactivity_hook = \
-    /vw_update_status_delayed
+/def -qi -Fp2147483647 -hPREACTIVITY vw_update_activity_preactivity_hook = \
+    /vw_update_activity_delayed
 
-/def -qi -Fp2147483647 -hBGTEXT vw_update_status_bgtext_hook = \
-    /vw_update_status_delayed
+/def -qi -Fp2147483647 -hBGTEXT vw_update_activity_bgtext_hook = \
+    /vw_update_activity_delayed
 
-/def -qi vw_update_status_delayed = \
+/def -i vw_update_activity_delayed = \
+    /if (vw_update_activity_pid) \
+        /kill %vw_update_activity_pid%; \
+    /endif%; \
     /if (moresize("") == 0 | mod(moresize(""), 50) == 0) \
-        /repeat -0 1 /vw_update_status%; \
+        /repeat -0 1 /vw_update_activity%; \
+        /set vw_update_activity_pid=0%; \
     /else \
-        /repeat -1 1 /vw_update_status%; \
+        /repeat -1 1 /vw_update_activity%; \
+        /set vw_update_activity_pid=%?%; \
     /endif
 
-/vw_update_status
+/vw_update_activity

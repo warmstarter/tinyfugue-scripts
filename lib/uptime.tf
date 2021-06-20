@@ -1,3 +1,5 @@
+/loaded uptime.tf
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; If you want to know how long your tf has been running stick the following 

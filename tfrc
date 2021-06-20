@@ -50,7 +50,7 @@
 
 /eval /set nl=$[char(10)]
 
-/require activity_status.tf
+;/require activity_status.tf
 ;/require activity_status2.tf -- unneeded, status.tf is a custom version of this
 /require alias.tf
 /require at.tf

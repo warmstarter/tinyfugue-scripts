@@ -1,3 +1,5 @@
+/loaded gagidlemsg.tf
+
 ;; gagidlemsg.tf  -  Gag idle messages so you don't repeatedly see them.
 ;;
 ;; This script is useful if you page people on MUSH/MUXes who leave their idle
@@ -13,7 +15,6 @@
 ; You can set the variable 'GagIdleCount' to control when the idle message is
 ; gagged.  The default is 3.
 
-/loaded gagidlemsg.tf
 
 /if ({GagIdleCount} =~ "") \
 	/set GagIdleCount=3 %; \

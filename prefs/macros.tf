@@ -21,6 +21,7 @@
 /require squish.tf
 /require status.tf
 /require teach.tf
+/require timer.tf
 /require uptime.tf
 /require urlwatch.tf
 /require vworld.tf

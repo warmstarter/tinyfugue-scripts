@@ -7,6 +7,8 @@
 
 /def cc = /connect $[world_info()]
 
+/def connect_all = /mapcar /connect $(/listworlds -s)
+
 /def autoreconnect = \
 	/if (%1 =~ "") \
 		/autoreconnect_status %; \

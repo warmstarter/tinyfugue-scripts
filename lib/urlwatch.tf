@@ -1,3 +1,5 @@
+/loaded urlwatch.tf
+
 ;---------------------------------------------------------------------------
 ; URL Watcher v1.05 - By Vash@AnimeMUCK ( sizer@san.rr.com )
 ;   Distribute at will! Though I'd like to hear of improvements.

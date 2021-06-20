@@ -3,7 +3,7 @@
 /set assoc_author=Cheetah@M*U*S*H
 /set assoc_info=Association of key/value pairs
 /set assoc_url=https://github.com/Sketch/tinyfugue-scripts
-/set assoc_version=1.0.0
+/set assoc_version=1.1.0
 
 /require helplist.tf
 
@@ -22,8 +22,8 @@
     /echo hashes/dictionaries/whatever, it's best to use a prefix. %;\
     /echo IE: /assoc users Cheetah=27  /assoc users Walker=5 
 
-/require textencode.tf
 /require lisp.tf
+/require textencode.tf
 
 ;;; Mostly for maintainability. Change outside this script not recommended.
 /set __assoc_prefix=assoc_

@@ -3,7 +3,7 @@
 /set kaispell_author=Chris "Kai" Frederick - kaispell@neofin.net
 /set kaispell_info=Kai's on-the-fly spell checker for buffer
 /set kaispell_url=http://www.neofin.net/kaispell
-/set kaispell_version=1.4.2
+/set kaispell_version=1.4.5
 
 /require helplist.tf
 /require status.tf
@@ -206,7 +206,7 @@
 /if (kaispell_resultsbar) \
 ; create a new bar
 ;  /eval /status_add -c -r1 kaispell_status:-:%kaispell_color '__' %; \
-  /eval /status_add -c -r1 kaispell_status:-:%kaispell_color%; \
+  /eval /status_add -c -r1 kaispell_status:-:%kaispell_color %; \
   /set kaispell_width=columns() - 7 %; \
 /else \
 ; Squeeze it after world on the default bar.  World becomes fixed-width,
@@ -219,7 +219,7 @@
 /endif
 
 /if (kaispell_resultsbar & !kaispell_autohide) \
-  /set status_height=3 %; \
+  /set status_height=2 %; \
 /endif
 
 ;; Keybindings

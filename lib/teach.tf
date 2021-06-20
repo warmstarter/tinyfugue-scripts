@@ -1,5 +1,4 @@
-; /teach
-;
+/loaded teach.tf
 ; It's basically a tf version of /teach to help teach
 ; other folks some fun points of tf!
 ;
