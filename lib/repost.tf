@@ -73,8 +73,9 @@
 ; [PREFIXES] Worldtype repost_prefix definitions. Feel free to add your own!
 /set repost_prefix_tiny_penn=@emit/noeval
 /set repost_prefix_tiny_tmux=@nemit
-/set repost_prefix_tiny_rhost=]@emit
+/set repost_prefix_tiny_rhost=}]@emit
 /set repost_prefix_tiny=@emit
+/set repost_prefix_virtual=}]@emit
 /set repost_prefix=say
 
 ; Keep track of recent logfiles

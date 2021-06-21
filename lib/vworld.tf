@@ -166,9 +166,6 @@
 ;;; vwstatus.tf might be worth moving these over there or
 ;;; elsewhere.
 
-;;; in tf5, alt-left & alt-right switch worlds.
-;;; this adds alt-up and alt-down for switching tabs within a world.
-
 /def vw_nexttabafter=/let fullname=%1%;\
         /let socketlist=%2 %2%; \
         /let worldname=$[vw_tab_world(fullname)]%; \
@@ -181,8 +178,6 @@
         /done%;\
         /return $$(/first %socketlist)
 
-;       Tweaked for QBFreak's sorted tab extensions 4/28/2017
-;        changed the value from the list of connected sockets, to a list of connected sockets in the order the user has specified
 /def vw_nexttab=/fg $[vw_nexttabafter(world_info(), $(/sortedsockets -a))]
 
 /def vw_prevtab=/let tmpsocketlist=$(/sortedsockets -a)%;\
@@ -207,7 +202,6 @@
 
 ;; fix " for vim syntax hilighting - mhh
 
-;       Tweaked for QBFreak's sorted tab extensions 4/28/2017
 /def vw_nextworld=/fg $[vw_nextworldafter(world_info(), $(/sortedsockets -a))]
 
 /def vw_prevworld=/let tmpsocketlist=$(/sortedsockets -a)%;\
@@ -219,9 +213,10 @@
         /fg $[vw_nextworldafter(world_info(), socketlist)]
 
 ;;; in tf5, alt-left & alt-right switch worlds.
-;;; this modifies these keys to actually switch worlds, not tabs
+;;; this modifies alt-left and alt-right for switching tabs within a world.
 ;;; it will go to an arbitrary tab within the first "different" world it
 ;;; finds in either direction
+;;; this adds alt-up & alt-down to actually switch worlds, not tabs
 
 /def key_esc_right=/vw_nexttab
 /def key_esc_left=/vw_prevtab

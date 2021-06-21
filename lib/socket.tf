@@ -19,6 +19,9 @@
 ;;;  disconnected worlds are still excluded from the list
 ;;;  if you specify some worlds but not all, the missing worlds will be appended to the end in the order the sockets were connected
 ;;;  if worldorder is blank, it will fall back to the list of connected sockets (the old way)
+
+;;; Only full worlds need to be added to the list if using vwstatus.tf
+
 /def sortedsockets = \
         /if (%1 =~ "-a") \
                 /let _inval=$(/listsockets -s) %; \
