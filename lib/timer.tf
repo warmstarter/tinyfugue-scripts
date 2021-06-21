@@ -18,13 +18,6 @@
   /echo /timer_stop    <timer>    Stops and displays a <timer> %; \
   /echo /timer_display <timer>    Displays a <timer>
 
-; Usage:
-;    /timer_start TEST
-;    /timer_stop TEST
-;
-; This will display:
-;    ## TEST: 2 min, 15 sec ##
-
 /def -i timer_start = /eval /set timer_%{1}_start=$[time()] %; \
     /echo -aBCRed ## %{name}: Timer Started ##
 

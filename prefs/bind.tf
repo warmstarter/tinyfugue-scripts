@@ -4,10 +4,6 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;;; All this should go into /keys
-;;; Also get defined and used.
-
 ;;; Function Keys
 ;;; Directions for binding to function keys
 ;;; If you want to bind a command to a particular function key, 

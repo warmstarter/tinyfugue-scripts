@@ -65,7 +65,7 @@
 ;/require hanoi.tf -- unneeded, game
 /require kbbind.tf
 /require kbfunc.tf
-;/require kbregion.tf -- MAYBE -- look into other copy/paste options
+;/require kbregion.tf -- unneeded -- copy and paste can be done in other ways
 ;/require kbstack.tf -- unneeded, kbdoublestack.tf is an enhanced version of this
 ;/require kb-emacs.tf -- unneeded, no use for emacs bindings
 ;/require kb-old.tf -- unneeded, no use for old bindings
@@ -102,8 +102,6 @@
 /eval /def HOOKFILE   = %{PREFDIR}/hook.tf
 /eval /def WORLDFILE  = %{PREFDIR}/world.tf
 
-/eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/%%F_[W].log}
-
 /loadworld
 /loadhilite
 /loadgag
@@ -125,9 +123,6 @@
 /eval /set savehist_dir=${LOGDIR}/histories
 /load_histories
 /repeat -0:10 i /save_histories
-
-;;; This sets the title of hterm from within tmux
-;;; /def -i xtitle = /echo -r \033Ptmux;\033\033]0;%*\007\033\\
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                            END OF FILE                            ;;

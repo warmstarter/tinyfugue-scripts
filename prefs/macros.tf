@@ -1,3 +1,5 @@
+;;; Local TF Library files in alphabetical order
+
 /require allmu.tf
 /require assoc.tf
 /require atquit.tf
@@ -23,6 +25,16 @@
 /require status.tf
 /require teach.tf
 /require timer.tf
+/require tmux.tf
 /require uptime.tf
 /require urlwatch.tf
 /require vworld.tf
+/require vwstatus.tf
+
+;;; Aliases
+
+;;; Common typos
+/alias paeg page %*
+/alias ppage page %*
+/alias oco ooc %*
+/alias coo ooc %*
