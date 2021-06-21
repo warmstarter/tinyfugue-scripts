@@ -35,9 +35,9 @@
 
 /def -i idler_status = \
   /if ({idlerpid} != -1) \
-    /echo %% idler loop is enabled. %; \
-  /else \
     /echo %% idler loop is disabled. %; \
+  /else \
+    /echo %% idler loop is enabled. %; \
   /endif
 
 /def -i idler_disable = \
