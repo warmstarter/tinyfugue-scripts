@@ -3,7 +3,7 @@
 /set vworld_author=Cheetah@M*U*S*H + Tab Status by NightMAREBot
 /set vworld_info=Handles virtual worlds
 /set vworld_url=https://github.com/Sketch/tinyfugue-scripts
-/set vworld_version=2.1.0
+/set vworld_version=3.0.0
 
 ;;;; Handle 'virtual' worlds.
 ;;;; This is a light API around connectionless sockets for adding, removing
@@ -325,7 +325,7 @@
                                 /test _mt := strcat(vw_tablist_muchmore_l, "MM", vw_tablist_muchmore_r) %;\
 			/endif %;\
 			/test _ret_item := strcat(_ret_item, _mt) %;\
-			/if (!(vw_tablist_collapse_world & vw_tab_world(_t) !~ vw_tab_world(fg_world()) & (_new = 0 | (_new > 0 & !vw_tablist_collapse_show_active)))) \
+			/if (!(vw_tablist_collapse_world & vw_tab_world(_t) !~ vw_tab_world(fg_world()) & (_new == 0 | (_new > 0 & !vw_tablist_collapse_show_active)))) \
 				/test _ret := strcat(_ret, _ret_item) %;\
 			/elseif (_t =~ vw_tab_world(_t)) \
 				/test _ret := strcat(_ret, _ret_item) %;\
@@ -351,28 +351,25 @@
         /endif %;\
 	/return tolower(substr({_dret}, _cutoff))
 
-/set vw_tabs=
+/set status_var_vw_tabs vw_build_tabs()
 
-/set status_var_vw_tabs=vw_build_tabs()
-
-; This isn't updating properly on things related to MORE and such.
 ;;; QBFreak's tab extensions - 3/1/2006 - qbfrea@qbfreak.net
 /status_add -r0 -B vw_tabs
-/def -Fp2147483647 -hACTIVITY|BGTEXT|MORE|WORLD vw_update_activity_status = /status_edit -r0 vw_tabs
+/def -qi -Fp2147483647 -hACTIVITY|MORE|WORLD vw_update_activity_status = /repeat -0 1 /vw_update_activity
 ;/def -Fp1 -hCONNECT|MORE vw_update_activity_edit = /status_edit -r1 vw_tabs
 /def -p0 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
 ;/def -Fp2147483647 -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT vw_update_activity = /status_edit -r2 vw_tabs
 ;/def -Fp2147483647 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
 
 /def -i vw_update_activity = \
-    /if (vw_update_activity_pid) \
-        /kill %vw_update_activity_pid%; \
-        /set vw_update_activity_pid=0%; \
-    /endif%; \
-    /set vw_tabs=$(/vw_build_tabs)
+;    /if (vw_update_activity_pid) \
+;        /kill %vw_update_activity_pid%; \
+;        /set vw_update_activity_pid=0%; \
+;    /endif%; \
+    /status_edit -r0 vw_tabs
 
-/def -qi -Fp2147483647 -mglob -h'WORLD' vw_update_activity_fg = \
-    /repeat -0 1 /vw_update_activity
+;/def -qi -Fp2147483647 -mglob -h'WORLD' vw_update_activity_fg = \
+;    /repeat -0 1 /vw_update_activity
 
 /def -E'${world_name} !~ fg_world() & moresize("")' \
   -qi -Fp2147483647 -mglob -h'DISCONNECT' \
@@ -380,22 +377,26 @@
         /activity_queue_hook ${world_name}%; \
         /vw_update_activity
 
-/def -qi -Fp2147483647 -hPREACTIVITY vw_update_activity_preactivity_hook = \
+/def -qi -Fp2147483647 -hPREACTIVITY|BGTEXT|SEND vw_update_activity_preactivity_hook = \
     /vw_update_activity_delayed
 
-/def -qi -Fp2147483647 -hBGTEXT vw_update_activity_bgtext_hook = \
-    /vw_update_activity_delayed
+;/def -qi -Fp2147483647 -hBGTEXT vw_update_activity_bgtext_hook = \
+;    /vw_update_activity_delayed
 
+
+;; What's the magic number here, 50? comes from activity_status.tf and is unexplained.
+;; should it be winlines() ?
 /def -i vw_update_activity_delayed = \
-    /if (vw_update_activity_pid) \
-        /kill %vw_update_activity_pid%; \
-    /endif%; \
-    /if (moresize("") == 0 | mod(moresize(""), 50) == 0) \
-        /repeat -0 1 /vw_update_activity%; \
-        /set vw_update_activity_pid=0%; \
-    /else \
-        /repeat -1 1 /vw_update_activity%; \
-        /set vw_update_activity_pid=%?%; \
-    /endif
+     /repeat -1 1 /vw_update_activity
+;    /if (vw_update_activity_pid) \
+;        /kill %vw_update_activity_pid%; \
+;    /endif%; \
+;    /if (moresize("") == 0 | mod(moresize(""), 50) == 0) \
+;        /repeat -0 1 /vw_update_activity%; \
+;        /set vw_update_activity_pid=0%; \
+;    /else \
+;        /repeat -1 1 /vw_update_activity%; \
+;        /set vw_update_activity_pid=%?%; \
+;    /endif
 
-/vw_update_activity
+;/vw_update_activity

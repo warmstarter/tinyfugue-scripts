@@ -17,11 +17,11 @@
 /status_rm insert
 /status_rm @world
 /status_rm @active
+/status_rm @more
 
 /set status_attr BCmagenta,Cbgrgb001
 /set status_height=2
 /set status_pad=
 
-/status_edit @more:8:BrCwhite
 /status_edit @log:6
 /status_edit @clock:12:BCblue

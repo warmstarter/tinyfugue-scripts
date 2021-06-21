@@ -61,8 +61,8 @@ td { padding: 0.5em 1em; } \
 ; ---------------------------------------------------------------------------
 
 ; We'll need this more than once
-;/set _urlpattern=(http|ftp|https)://\S+[0-9A-Za-z/]
-/set _urlpattern=(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)
+/set _urlpattern=(http|ftp|https)://\S+[0-9A-Za-z/]
+;/set _urlpattern=(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)
 
 ; Create the trigger
 /eval /def -mregexp -p9 -F -q -t%_urlpattern urlwatch = /urlw2 %PL %P0 %PR

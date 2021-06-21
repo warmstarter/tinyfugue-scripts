@@ -2,7 +2,7 @@
 ;;;                           TFRC file                             ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-/set LASTMOD=TFRC last modified: 06/19/2021
+/set LASTMOD=TFRC last modified: 06/20/2021
 
 /def TFLIBDIR=/usr/local/share/tf-lib
 /set TFDIR=~/tf
@@ -50,11 +50,11 @@
 
 /eval /set nl=$[char(10)]
 
-;/require activity_status.tf
-;/require activity_status2.tf -- unneeded, status.tf is a custom version of this
+;/require activity_status.tf -- unneeded, status.tf is an enhanced version of this
+;/require activity_status2.tf -- unneeded, status.tf is an enhanced version of this
 /require alias.tf
 /require at.tf
-;/require changes.tf -- unneeded, tf isn't getting updated anymore so no need to look at this
+/require changes.tf
 /require color.tf
 /require complete.tf
 ;/require cylon.tf -- unneeded, demo
