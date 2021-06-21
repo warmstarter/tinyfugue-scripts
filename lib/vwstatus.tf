@@ -3,7 +3,7 @@
 /set vwstatus_author=QBFreak
 /set vwstatus_info=Status Bar for Virtual Worlds
 /set vwstatus_url=
-/set vwstatus_version=2.0.0
+/set vwstatus_version=2.2.0
 
 /require helplist.tf
 /require socket.tf
@@ -113,9 +113,6 @@
         /endif %;\
         /return tolower(substr({_dret}, _cutoff))
 
-;;; This does not catch all page-down/tab refreshes of moresize()
-;;; needs additional hooks for those keys/actions
-
 /set status_var_vw_tabs vw_build_tabs()
 
 /status_add -r0 -B vw_tabs
@@ -136,3 +133,14 @@
 
 /def -i vw_update_activity_delayed = \
      /repeat -1 1 /vw_update_activity
+
+;;; These need to get redefined to call vw_update_activity
+;;; otherwise in some situations when scrolling down, the
+;;; status bar will not update.
+
+/def key_pgdn = \
+     /dokey_pgdn %; \
+     /vw_update_activity
+/def key_tab = \
+     /dokey page %; \
+     /vw_update_activity
