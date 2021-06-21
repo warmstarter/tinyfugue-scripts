@@ -216,9 +216,9 @@
 ;;; this modifies alt-left and alt-right for switching tabs within a world.
 ;;; it will go to an arbitrary tab within the first "different" world it
 ;;; finds in either direction
-;;; this adds alt-up & alt-down to actually switch worlds, not tabs
+;;; this adds ctrl-left-up & ctrl-right to actually switch worlds, not tabs
 
-/def key_esc_right=/vw_nexttab
 /def key_esc_left=/vw_prevtab
-/def key_esc_up=/vw_nextworld
-/def key_esc_down=/vw_prevworld
+/def key_esc_right=/vw_nexttab
+/def key_ctrl_left=/vw_prevworld
+/def key_ctrl_right=/vw_nextworld
