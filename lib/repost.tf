@@ -3,7 +3,7 @@
 /set repost_author=Sketch@M*U*S*H
 /set repost_info=Assists the user in reposting lines from logs
 /set repost_url= https://raw.github.com/Sketch/tinyfugue-scripts
-/set repost_version=1.1.1
+/set repost_version=1.4.0
 
 /require helplist.tf
 /require squish.tf
@@ -154,29 +154,29 @@
   /done%;\
   /set _repost_prefix_%{escaped_worldname}=%{_final_repost_prefix}%;\
   /set _repost_filename_%{escaped_worldname}=%{-1}%;\
-  /vw_create -s/_repost_sender -tNoLog repost_%{1}%;\
-  /fg repost_%{1}%;\
-  /quote -S -decho -wrepost_%{1} !"nl -w1 -ba %{-1}"%;\
+  /vw_create -s/_repost_sender -tNoLog %{1}:repost%;\
+  /fg %{1}:repost%;\
+  /quote -S -decho -w%{1}:repost !"nl -w1 -ba %{-1}"%;\
   /eval /_repost_message_prefix %%{_repost_prefix_%{escaped_worldname}}%;\
   /_repost_message_foregrounded%;\
   /unset _final_repost_prefix
 
 ; Close the reposter virtual world.
-; {1} is repost_<WORLDNAME>
+; {1} is <WORLDNAME>:repost
 /def -i _repost_close_vworld=\
   /let current=${world_name}%;\
-  /let origin=$[substr({1},strchr({1},'_')+1)]%;\
+  /let origin=$[substr({1},0,strchr({1},':'))]%;\
   /unset _repost_filename_$[textencode({origin})]%;\
   /unset _repost_prefix_$[textencode({origin})]%;\
   /vw_delete %{1}%;\
   /if ({current} =~ {1}) /fg %{origin}%; /endif
 
 ; The send-handler for the virtual repost world.
-; {1} is repost_<WORLDNAME>
+; {1} is <WORLDNAME>:repost
 ; {-1} is the text the user typed.
 /def -i _repost_sender=\
   /let chosen=$[replace(' ',',',squish({-1}))]%;\
-  /let origin=$[substr({1},strchr({1},'_')+1)]%;\
+  /let origin=$[substr({1},0,strchr({1},':'))]%;\
   /if (regmatch('^[-,0-9]+$',{chosen}) != 0)\
     /let delim=\0x1A%;\
     /eval /set _repost_file=%%{_repost_filename_$[textencode({origin})]}%;\
