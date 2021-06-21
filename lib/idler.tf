@@ -2,7 +2,7 @@
 
 /set idler_author=Gwen Morse - Christian J. Robinson - heptite@gmail.com
 /set idler_info=TinyFugue no-idle script.
-/set idler_url=
+/set idler_url=http://christianrobinson.name/programming/tf/
 /set idler_version=3.0.0
 
 /require helplist.tf

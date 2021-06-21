@@ -2,7 +2,7 @@
 
 /set gagidlemsg_author=Christian J. Robinson heptite at gmail dot com
 /set gagidlemsg_info=Gags repeat idle messages from a player
-/set gagidlemsg_url=
+/set gagidlemsg_url=http://christianrobinson.name/programming/tf/
 /set gagidlemsg_version=1.0.0
 
 /require helplist.tf

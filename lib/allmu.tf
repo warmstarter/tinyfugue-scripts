@@ -3,7 +3,7 @@
 /set allmu_author=
 /set allmu_info=Sends a command to all open worlds
 /set allmu_url=
-/set allmu_version=3.0.0
+/set allmu_version=4.0.0
 
 /require helplist.tf
 
@@ -14,4 +14,4 @@
   /echo /allmu <command>           send <command> to all open worlds
 
 /def allmu=\
-  /send -W -T'tiny.*' %{*}
+  /send -T'tiny.*' %{*}

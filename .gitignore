@@ -1,5 +1,7 @@
 lib/unused
 logs/auto/*
 logs/histories/*
+logs/web/*
 prefs/world.tf
 tiny.note
+todo.tf
