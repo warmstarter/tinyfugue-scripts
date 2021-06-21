@@ -17,6 +17,10 @@
 /set SHELL=/bin/bash
 /set TZ=EST5EDT
 
+/def -f host_def = \
+ /quote /set hostname=!hostname
+/host_def
+
 /clock %a %I:%M %P
 /more off
 /redef on

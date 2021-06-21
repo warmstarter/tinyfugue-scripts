@@ -19,9 +19,9 @@
 /status_rm @active
 /status_rm @more
 
-/set status_attr BCmagenta,Cbgrgb001
+/set status_attr Crgb035,Cbgrgb001
 /set status_height=2
 /set status_pad=
 
 /status_edit @log:6
-/status_edit @clock:12:BCblue
+/status_edit @clock:12:Crgb035

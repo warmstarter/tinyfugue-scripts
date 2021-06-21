@@ -20,9 +20,9 @@
 
 ;;; the attributes to put before the fg, bg (no activity), or bg (has activity) world names
 /set vw_tablist_fg_world_attrs=@{Cyellow,Cbgrgb001}
-/set vw_tablist_bgworld_attrs=@{Ccyan,Cbgrgb001}
+/set vw_tablist_bgworld_attrs=@{Cwhite,Cbgrgb001}
 /set vw_tablist_bgmore_world_attrs=@{Cbrightred,Cbgrgb001}
-/set vw_tablist_tab_attrs=@{hCwhite,Cbgrgb001}
+/set vw_tablist_tab_attrs=@{Ccyan,Cbgrgb001}
 ;;; seperator between tabs within a world. 
 ;;;   - note: changing this and the next pair could well break certain aspects
 ;;;           of the tabs screen fitting part (I'll fix eventually)
@@ -112,6 +112,9 @@
                 /test _cutoff:=0 %;\
         /endif %;\
         /return tolower(substr({_dret}, _cutoff))
+
+;;; This does not catch all page-down/tab refreshes of moresize()
+;;; needs additional hooks for those keys/actions
 
 /set status_var_vw_tabs vw_build_tabs()
 

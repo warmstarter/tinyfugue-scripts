@@ -75,7 +75,7 @@
 
 
 ; Default to logging to ~/logs/auto/{WORLDNAME}.YYYY-MM-DD.txt
-/eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/[W].%%F.txt}
+/eval /set inflog_fileformat=%{inflog_fileformat-~/tf/logs/auto/%%F_[W].log}
 /eval /set inflog_hourly_stamp=%{inflog_hourly_stamp-[%%H:00]}
 /eval /set inflog_hourly_style=%{inflog_hourly_style-auto}
 ; inflog_log is passed the desired world name as %{1}
