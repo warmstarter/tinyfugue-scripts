@@ -7,7 +7,7 @@
 
 /require helplist.tf
 
-/help_add /help_cheecat sends large unformatted text to MUSH
+/help_add /help_cheecat Sends large unformatted text to MUSH
 
 /def -i help_cheecat=\
      /echo -aB Cheecat help:%;\

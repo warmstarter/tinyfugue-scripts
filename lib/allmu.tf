@@ -7,7 +7,7 @@
 
 /require helplist.tf
 
-/help_add /help_allmu sends a command to all open worlds 
+/help_add /help_allmu Sends a command to all open worlds 
 
 /def -i help_allmu = \
   /echo -aB allmu help:%;\

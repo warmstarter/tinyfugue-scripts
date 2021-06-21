@@ -68,4 +68,3 @@
     /send @pemit me = locate(me, %*, *) %; \
   /endif
 /def -h"send lock *" lockhook = /lock %-1
-

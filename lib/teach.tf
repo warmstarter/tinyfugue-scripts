@@ -1,8 +1,8 @@
 /loaded teach.tf
 
-/set teach_author=
+/set teach_author=Greg Millam Walker@M*U*S*H
 /set teach_info=Sends unparsed tf messages to world
-/set teach_url=
+/set teach_url=https://github.com/Sketch/tinyfugue-scripts
 /set teach_version=1.0.0
 
 /require helplist.tf

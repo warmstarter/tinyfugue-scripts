@@ -7,7 +7,7 @@
 
 /require helplist.tf
 
-/help_add /help_atquit automatic actions at quit
+/help_add /help_atquit Automatic actions to take at quit
 
 /def -i help_atquit=\
 	/echo -aB Help for 'at quit':%;\

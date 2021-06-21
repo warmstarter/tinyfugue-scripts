@@ -1,7 +1,7 @@
 /require allmu.tf
 /require assoc.tf
 /require atquit.tf
-/require cg.tf
+/require connect.tf
 /require copyto.tf
 /require cheecat.tf
 /require escaper.tf
@@ -17,6 +17,7 @@
 /require reconnect.tf
 /require repost.tf
 /require rwhen.tf
+/require socket.tf
 /require srec.tf
 /require squish.tf
 /require status.tf

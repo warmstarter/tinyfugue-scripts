@@ -1,17 +1,23 @@
-/loaded cg.tf
+/loaded connect.tf
 
-/set cg_author=
-/set cg_info=Connects to a world based on prefix match
-/set cg_url=https://github.com/Sketch/tinyfugue-scripts
-/set cg_version=1.0.1
+/set connect_author=
+/set connect_info=Connects to defined worlds
+/set connect_url=https://github.com/Sketch/tinyfugue-scripts
+/set connect_version=2.0.0
 
 /require helplist.tf
 
-/help_add /help_cg Connects to an open world
+/help_add /help_connect Connects to defined worlds
 
-/def -i help_cg = \
-  /echo -aB cg help:%;\
+/def -i help_connect = \
+  /echo -aB connect help:%;\
+    /echo /ca                  Connects to all worlds %; \
+    /echo /cc <world>          Connects to <world> %; \
     /echo /cg <world>          Switch to first connected world matching prefix
+
+/def ca = /mapcar /connect $(/listworlds -s)
+
+/def cc = /connect $[world_info()]
 
 /def -i cg=\
   /let mylist=$(/listsockets -s)%;\

@@ -1,13 +1,13 @@
 /loaded urlwatch.tf
 
 /set urlwatch_author=Vash@AnimeMUCK
-/set urlwatch_info=Grabs URLs from worlds and makes webpage
+/set urlwatch_info=Grabs URLs from worlds and makes a webpage
 /set urlwatch_url=
 /set urlwatch_version=1.0.0
 
 /require helplist.tf
 
-/help_add /help_urlwatch Grabs URLS from worlds and makes webpage
+/help_add /help_urlwatch Grabs URLS from worlds and makes a webpage
 
 /def -i help_urlwatch = \
   /echo -aB urlwatch help:%;\

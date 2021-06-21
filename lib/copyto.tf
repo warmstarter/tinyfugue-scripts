@@ -28,4 +28,3 @@
 
 /def -p100 -ag -mglob -t"TFCopy > *" fuguecopy = \
 	/if (copy_world !~ "") /send -w%{copy_world} %-2%; /endif
-

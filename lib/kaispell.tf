@@ -3,7 +3,7 @@
 /set kaispell_author=Chris "Kai" Frederick - kaispell@neofin.net
 /set kaispell_info=Kai's on-the-fly spell checker for buffer
 /set kaispell_url=http://www.neofin.net/kaispell
-/set kaispell_version=1.5.0
+/set kaispell_version=1.5.1
 
 /require helplist.tf
 /require status.tf
@@ -11,14 +11,11 @@
 /help_add /help_kaispell Fix spelling errors in pose
 
 /def -i help_kaispell=\
-     /echo -aB Kaispell help:%;\
-     /echo /kiaspell         Fix spellings errors in pose%;\
-     /echo Description and usage%;\
-     /echo  %;\
-     /echo  This will spell check your input to TinyFugue on the fly.  Misspelled%;\
-     /echo  words are displayed on the status line in visual mode.%;\
-     /echo  %;\
-     /echo  Alt-S will feed the input through ispell. This allows you to get%;\
+     /echo -aB Kaispell help: %; \
+     /echo  This will spell check your input to TinyFugue on the fly.  Misspelled %; \
+     /echo  words are displayed on the status line in visual mode. %; \
+     /echo  %; \
+     /echo  Alt-S will feed the input through ispell. This allows you to get %; \
      /echo  suggestions and make corrections, as well as add words to the dictionary.
 
 ;; Installation:
@@ -88,7 +85,7 @@
 /set kaispell_resultsbar=1
 
 ; 1 to auto-hide the results bar; 0 to leave it open.  Forced off in TF4.
- /set kaispell_autohide=0
+/set kaispell_autohide=0
 
 ; How long (seconds) results stay on screen after hitting enter.  TF4
 ; requires an integer; TF5 allows decimals.
@@ -238,7 +235,7 @@
 /def -ib\$  key_dollar     = /input \$%; /kaispell_enqueue
 /def -ib\%  key_percent    = /input \%%; /kaispell_enqueue
 /def -ib\=  key_equals     = /input \=%; /kaispell_enqueue
-/def -ib' '  key_space     = /test input(' ') %; /kaispell_enqueue
+/def -ib' ' key_space      = /test input(' ') %; /kaispell_enqueue
 
 ; Clear the results a couple seconds after hitting enter
 /def -ib'^M' key_enter     = /dokey newline %; /repeat -%kaispell_linger 1 /kaispell_enqueue

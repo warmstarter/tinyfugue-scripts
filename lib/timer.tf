@@ -1,13 +1,13 @@
 /loaded timer.tf
 
 /set timer_author=marvtf
-/set timer_info=Sets a timer
+/set timer_info=Sets or displays a timer
 /set timer_url=
 /set timer_version=1.0.0
 
 /require helplist.tf
 
-/help_add /help_timer Sets a timer
+/help_add /help_timer Sets or displays a timer
 
 /def -i help_timer = \
   /echo -aB timer help:%;\

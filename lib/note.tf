@@ -7,12 +7,12 @@
 
 /require helplist.tf
 
-/help_add /help_note Let's you take notes as you go
+/help_add /help_note Note taking and reading
 
 /def -i help_note=\
-     /echo -aB Note help:%;\
-     /echo /note              Shows your curent notes%;\
-     /echo /noteadd <text>    Adds a new note with <text>%;\
+     /echo -aB Note help: %; \
+     /echo /note              Shows your curent notes %; \
+     /echo /noteadd <text>    Adds a new note with <text> %; \
      /echo /notedel <#>       Deletes note <#>
 
 /set notelist=

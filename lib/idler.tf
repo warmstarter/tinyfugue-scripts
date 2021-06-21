@@ -3,46 +3,58 @@
 /set idler_author=Gwen Morse - Christian J. Robinson - heptite@gmail.com
 /set idler_info=TinyFugue no-idle script.
 /set idler_url=
-/set idler_version=2.8.0
+/set idler_version=3.0.0
 
 /require helplist.tf
 
-/help_add /help_idler keeps you connected when idle
+/help_add /help_idler Prevents idle timeout by periodically sending to all worlds
 
 /def -i help_idler=\
-     /echo -aB Idler help:%;\
-     /echo /chkidle            Checks to see if the idle loop is running.%; \
-     /echo /idler              Turns on the idler to send @@ to at periodic intervals%;\
-     /echo /noidle             Turns off the idle loop
+     /echo -aB Idler help: %; \
+     /echo idler sends @@ at periodic intervals to all worlds. %; \
+     /echo /idler status %; \
+     /echo /idler enable %; \
+     /echo /idler disable
 
-; Set the variable 'Idler_Exclude_Worlds' with a | between each world name to
+; Set the variable 'idler_backlist' with a | between each world name to
 ; exclude worlds from the idle trigger /send command.  Eg:
-; /set Idler_Exclude_Worlds=foo|bar|baz
+; /set idler_blacklist=foo|bar|baz
 
 /eval /set idlerpid $[idlerpid ? : -1]
 
-/def -i chkidle = \
+/def idler = \
+        /if (%1 =~ "") \
+                /idler_status %; \
+        /elseif (%1 =~ "status") \
+                /idler_status %; \
+        /elseif (%1 =~ "enable") \
+                /idler_enable %; \
+        /elseif (%1 =~ "disable") \
+		/idler_disable %; \
+        /endif
+
+/def -i idler_status = \
   /if ({idlerpid} != -1) \
-    /echo %% No-Idle loop is running. %; \
-  /elfse \
-    /echo %% No-Idle loop is not running. %; \
+    /echo %% idler loop is enabled. %; \
+  /else \
+    /echo %% idler loop is disabled. %; \
   /endif
 
-/def -i noidle = \
+/def -i idler_disable = \
   /if ({idlerpid} != -1) \
     /kill %idlerpid %; \
     /set idlerpid -1 %; \
-    /echo %% No-Idle loop killed. %; \
+    /echo %% idler loop was disabled. %; \
   /else \
-    /echo %% No-Idle loop not running. %; \
+    /echo %% idler loop is already disabled. %; \
   /endif
 
-/def -i idler = \
+/def -i idler_enable = \
   /if ({idlerpid} == -1) \
     /_idler %; \
-    /echo %% No-Idle loop started. %; \
+    /echo %% idler loop was enabled. %; \
   /else \
-    /echo %% No-Idle loop already running. %; \
+    /echo %% idler loop is already enabled. %; \
   /endif
 
 /def -i _idler = \
@@ -51,7 +63,7 @@
   /let _sockets=$(/listsockets -T'tiny.*' -s) %;\
   /let _line=$(/nth %{i} %{_sockets}) %;\
   /while (_line !~ "") \
-    /if /eval /test '%_line' !/ '{%Idler_Exclude_Worlds}' %;\
+    /if /eval /test '%_line' !/ '{%idler_blacklist}' %;\
     /then \
       /let _worlds=%_worlds %_line %;\
     /endif %; \
@@ -63,4 +75,4 @@
   /repeat  -0:$[rand(5,15)]:$[rand(60)] 1 /_idler %;\
   /set idlerpid %?
 
-/idler
+/_idler

@@ -6,6 +6,7 @@
 /set vworld_version=3.0.0
 
 /require helplist.tf
+/require socket.tf
 /require status.tf
 
 /require textencode.tf
@@ -14,14 +15,17 @@
 /help_add /help_vworld Virtual Worlds and Status Bar
 
 /def -i help_vworld = \
-  /echo -aB vworld help:%;\
-  /echo This needs a help write-up
+  /echo -aB vworld help: %; \
+  /echo This needs a help write-up %; \
+/echo Handle 'virtual' worlds. %; \
+/echo This is a light API around connectionless sockets for adding, removing %; \
+/echo and making sure they're connected, and have something to handle %; \
+/echo 'sending' text to the world. %; \
+/echo %; \
+/echo It has been modified to include additional features including a statusbar
 
-;;;; Handle 'virtual' worlds.
-;;;; This is a light API around connectionless sockets for adding, removing
-;;;; and making sure they're connected, and have something to handle
-;;;; 'sending' text to the world.
-
+;;; NOTE: this assumes virtual worlds are named like:
+; <world>:<virtual>
 
 ;;; /vw_create [-s<send_handler>] [-t<subtype>] <World Name>
 ; Creates a virtual world and ensures it's connected.
@@ -144,7 +148,7 @@
 ;;;;;;;;;;;;; Integration of tabs
 
 
-;;; returns the base world name (stuff before the .)
+;;; returns the base world name (stuff before the :)
 /def vw_tab_world=\
         /if (vw_exists({1})) \
                 /return substr({1}, 0, strchr({1},":")) %;\
@@ -152,7 +156,7 @@
                 /return {1} %;\
         /endif
 
-;;; returns the name of the tab (stuff after the .)
+;;; returns the name of the tab (stuff after the :)
 /def vw_tab_name=\
         /if (vw_exists({1})) \
                 /return substr({1}, strchr({1},":")+1) %;\
@@ -187,14 +191,6 @@
         /done%; \
         /fg $[vw_nexttabafter(world_info(), socketlist)]
 
-/def key_esc_up=/vw_nexttab
-/def key_esc_down=/vw_prevtab
-
-;;; in tf5, alt-left & alt-right switch worlds.
-;;; this modifies these keys to actually switch worlds, not tabs
-;;; it will go to an arbitrary tab within the first "different" world it
-;;; finds in either direction
-
 /def vw_nextworldafter=/let fullname=%1%;\
         /let socketlist=%2 %2%; \
         /let worldname=$[vw_tab_world(fullname)]%; \
@@ -220,48 +216,15 @@
         /done%; \
         /fg $[vw_nextworldafter(world_info(), socketlist)]
 
-/def key_esc_right=/vw_nextworld
-/def key_esc_left=/vw_prevworld
+;;; in tf5, alt-left & alt-right switch worlds.
+;;; this modifies these keys to actually switch worlds, not tabs
+;;; it will go to an arbitrary tab within the first "different" world it
+;;; finds in either direction
 
-;;; QBFreak's sorted tab extensions - 4/28/2017 - qbfreak@qbfreak.net
-;;; Whoo! Now you can specify the order the worlds appear!
-;;;  use /set worldorder=Worldname1 Worldname2 Worldname3
-;;;  disconnected worlds are still excluded from the list
-;;;  if you specify some worlds but not all, the missing worlds will be appended to the end in the order the sockets were connected
-;;;  if worldorder is blank, it will fall back to the list of connected sockets (the old way)
-/def sortedsockets = \
-        /if (%1 =~ "-a") \
-                /let _inval=$(/listsockets -s) %; \
-        /else \
-                /let _inval=$(/@listsockets -s -mregexp ^[^:]+\$) %; \
-        /endif %; \
-        /if (worldorder =~ "") \
-                /result "%_inval" %; \
-        /endif %; \
-        /let _unsortedsockets=%_inval %; \
-        /let _sorder=%worldorder %; \
-        /let _unspecifiedsockets=%_unsortedsockets %; \
-        /let _os=$(/first %worldorder) %; \
-        /while (_os !~ "") \
-                /let _unsort=%_unspecifiedsockets %; \
-                /let _unspecifiedsockets=%; \
-                /let _us=$(/first %_unsort)%; \
-                /while (_us !~ "") \
-                        /if (%_os =~ %_us) \
-                                /let _retval=%_retval %_us %; \
-                        /else \
-                                /let _unspecifiedsockets=%_unspecifiedsockets %_us %; \
-                        /endif %; \
-                        /let _unsort=$(/rest %_unsort) %; \
-                        /let _us=$(/first %_unsort) %; \
-                /done %; \
-                /let _sorder=$(/rest %_sorder) %; \
-                /let _os=$(/first %_sorder) %; \
-        /done %; \
-;       Using /echo strips the leading space from variable values
-        /let _retval=%_retval $(/echo %_unspecifiedsockets) %; \
-        /result "$(/echo %_retval)"
-
+/def key_esc_right=/vw_nexttab
+/def key_esc_left=/vw_prevtab
+/def key_esc_up=/vw_nextworld
+/def key_esc_down=/vw_prevworld
 
 ;;; the attributes to put before the fg, bg (no activity), or bg (has activity) world names
 /set vw_tablist_fg_world_attrs=@{Cyellow,Cbgrgb001}
@@ -271,6 +234,7 @@
 ;;; seperator between tabs within a world. 
 ;;;   - note: changing this and the next pair could well break certain aspects
 ;;;           of the tabs screen fitting part (I'll fix eventually)
+;;; Definitely keep the sep and more bits as is, except for colors
 /set vw_tablist_tab_sep=@{Cgray}|
 ;;; seperators between entire worlds.
 /set vw_tablist_world_sep_l=@{Cgray,Cbgrgb001}[
@@ -298,9 +262,8 @@
                 /return columns() %;\
         /endif
 
-/def vw_build_tabs=\
 ;	Tweaked for QBFreak's sorted tab extensions 4/28/2017
-;	 changed the value of _slist from the list of connected sockets, to a list of connected sockets in the order the user has specified
+/def vw_build_tabs=\
 	/let _slist=$(/sortedsockets) %; \
 	/let _w=$(/first %_slist) %;\
 	/test _ret:="" %;\
@@ -364,20 +327,11 @@
 ;;; QBFreak's tab extensions - 3/1/2006 - qbfrea@qbfreak.net
 /status_add -r0 -B vw_tabs
 /def -qi -Fp2147483647 -hACTIVITY|MORE|WORLD vw_update_activity_status = /repeat -0 1 /vw_update_activity
-;/def -Fp1 -hCONNECT|MORE vw_update_activity_edit = /status_edit -r1 vw_tabs
 /def -p0 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
-;/def -Fp2147483647 -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT vw_update_activity = /status_edit -r2 vw_tabs
-;/def -Fp2147483647 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
 
+;;; Based on activity_status.tf
 /def -i vw_update_activity = \
-;    /if (vw_update_activity_pid) \
-;        /kill %vw_update_activity_pid%; \
-;        /set vw_update_activity_pid=0%; \
-;    /endif%; \
     /status_edit -r0 vw_tabs
-
-;/def -qi -Fp2147483647 -mglob -h'WORLD' vw_update_activity_fg = \
-;    /repeat -0 1 /vw_update_activity
 
 /def -E'${world_name} !~ fg_world() & moresize("")' \
   -qi -Fp2147483647 -mglob -h'DISCONNECT' \
@@ -388,23 +342,5 @@
 /def -qi -Fp2147483647 -hPREACTIVITY|BGTEXT|SEND vw_update_activity_preactivity_hook = \
     /vw_update_activity_delayed
 
-;/def -qi -Fp2147483647 -hBGTEXT vw_update_activity_bgtext_hook = \
-;    /vw_update_activity_delayed
-
-
-;; What's the magic number here, 50? comes from activity_status.tf and is unexplained.
-;; should it be winlines() ?
 /def -i vw_update_activity_delayed = \
      /repeat -1 1 /vw_update_activity
-;    /if (vw_update_activity_pid) \
-;        /kill %vw_update_activity_pid%; \
-;    /endif%; \
-;    /if (moresize("") == 0 | mod(moresize(""), 50) == 0) \
-;        /repeat -0 1 /vw_update_activity%; \
-;        /set vw_update_activity_pid=0%; \
-;    /else \
-;        /repeat -1 1 /vw_update_activity%; \
-;        /set vw_update_activity_pid=%?%; \
-;    /endif
-
-;/vw_update_activity

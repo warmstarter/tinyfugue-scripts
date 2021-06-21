@@ -11,23 +11,7 @@
 
 /def -i help_gagidlemsg = \
   /echo -aB gagidlemsg help:%;\
-  /echo This runs automatically
-
-;; gagidlemsg.tf  -  Gag idle messages so you don't repeatedly see them.
-;;
-;; This script is useful if you page people on MUSH/MUXes who leave their idle
-;; message active.
-;;
-;; Copyright (C) December 01, 2003  Christian J. Robinson <heptite@gmail.com>
-;; Distributed under the terms of the GNU Public License.
-;
-;;; Usage:
-;
-; Just load this file.
-;
-; You can set the variable 'GagIdleCount' to control when the idle message is
-; gagged.  The default is 3.
-
+  /echo Automatically gags repeated idle messages from a player.
 
 /if ({GagIdleCount} =~ "") \
 	/set GagIdleCount=3 %; \

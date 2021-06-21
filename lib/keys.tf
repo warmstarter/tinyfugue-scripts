@@ -1,17 +1,17 @@
 /loaded keys.tf
 
 /set keys_author=Neerth, Lusternia
-/set keys_info=Show a list of a bunch of command-altering and -navigating commands
+/set keys_info=Prints useful key combinations to the screen
 /set keys_url=
 /set keys_version=1.0.0
 
 /require helplist.tf
 
-/help_add /help_keys to screen print useful key combinations
+/help_add /help_keys Prints useful key combinations to the screen 
 
 /def -i help_keys = \
   /echo -aB Think help:%;\
-  /echo /keys                  prints useful key combinations to the screen
+  /echo /keys                  Prints useful key combinations to the screen
 
 /def keys = \
     /echo -paCblue $[strrep("=",80)] %; \
@@ -29,5 +29,3 @@
     /echo -paCblue $[strrep("=",80)] %; \
     /echo -paCbrightyellow @{BCbrightcyan}CTR+R@{n}  $[pad("recall last use of buffer text",-31)]  @{BCbrightcyan}@{n}  %; \
     /echo -paCblue $[strrep("=",80)] %;
-
-

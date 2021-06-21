@@ -1,28 +1,21 @@
 /loaded reconnect.tf
 
 /set reconnect_author=QBFreak
-/set reconnect_info=Keeps you connected to worlds
+/set reconnect_info=Reconnects to worlds that get disconnected
 /set reconnect_url=
 /set reconnect_version=1.0.0
 
 /require helplist.tf
 
-/help_add /help_reconnect Reconnects you to worlds
+/help_add /help_reconnect Reconnects to worlds that get disconnected
 
 /def -i help_reconnect = \
   /echo -aB reconnect help:%;\
   /echo This needs a help write-up
 
-;;; reconnect.tf - Automatically reconnect to disconnected TinyFugue worlds
-;;;  QBFreak <qbfreak@qbfreak.net> 4/29/2017
-
 /def -Fp1 -ag -E'!{intentional_disconnect} & {autoreconnect_enable}' -hDISCONNECT -T'tiny.*' autoreconnect_hook = /connect %1
 /def -Fp1 -ag -E'{intentional_disconnect} & {autoreconnect_enable}' -hDISCONNECT -T'tiny.*' reset_autoreconnect = /set intentional_disconnect=0
 /def -Fp1 -E'{autoreconnect_enable}' -mregexp -h'SEND ^QUIT$' -T'tiny.*' quithook = /set intentional_disconnect=1
-
-;;; These were added here, but they might be better in another place
-/def cc = /connect $[world_info()]
-/def connect_all = /mapcar /connect $(/listworlds -s)
 
 /def autoreconnect = \
 	/if (%1 =~ "") \
