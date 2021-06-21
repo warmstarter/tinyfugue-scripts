@@ -1,19 +1,27 @@
 /loaded vworld.tf
 
-/set vworld_author=Cheetah@M*U*S*H + Tab Status by NightMAREBot
+/set vworld_author=Cheetah@M*U*S*H + QBFreak
 /set vworld_info=Handles virtual worlds
 /set vworld_url=https://github.com/Sketch/tinyfugue-scripts
 /set vworld_version=3.0.0
+
+/require helplist.tf
+/require status.tf
+
+/require textencode.tf
+/require textutil.tf
+
+/help_add /help_vworld Virtual Worlds and Status Bar
+
+/def -i help_vworld = \
+  /echo -aB vworld help:%;\
+  /echo This needs a help write-up
 
 ;;;; Handle 'virtual' worlds.
 ;;;; This is a light API around connectionless sockets for adding, removing
 ;;;; and making sure they're connected, and have something to handle
 ;;;; 'sending' text to the world.
 
-/require status.tf
-
-/require textencode.tf
-/require textutil.tf
 
 ;;; /vw_create [-s<send_handler>] [-t<subtype>] <World Name>
 ; Creates a virtual world and ensures it's connected.

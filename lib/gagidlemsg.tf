@@ -1,5 +1,18 @@
 /loaded gagidlemsg.tf
 
+/set gagidlemsg_author=Christian J. Robinson heptite at gmail dot com
+/set gagidlemsg_info=Gags repeat idle messages from a player
+/set gagidlemsg_url=
+/set gagidlemsg_version=1.0.0
+
+/require helplist.tf
+
+/help_add /help_gagidlemsg Gags repeat idle messages from a player
+
+/def -i help_gagidlemsg = \
+  /echo -aB gagidlemsg help:%;\
+  /echo This runs automatically
+
 ;; gagidlemsg.tf  -  Gag idle messages so you don't repeatedly see them.
 ;;
 ;; This script is useful if you page people on MUSH/MUXes who leave their idle

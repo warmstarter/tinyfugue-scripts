@@ -1,5 +1,18 @@
 /loaded uptime.tf
 
+/set uptime_author=
+/set uptime_info=Checks the uptime of tf
+/set uptime_url=
+/set uptime_version=1.1.0
+
+/require helplist.tf
+
+/help_add /help_uptime Checks the uptime of tf
+
+/def -i help_uptime = \
+  /echo -aB uptime help:%;\
+  /echo This needs a help write-up
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; If you want to know how long your tf has been running stick the following 

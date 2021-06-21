@@ -5,10 +5,6 @@
 /set idler_url=
 /set idler_version=2.8.0
 
-; Set the variable 'Idler_Exclude_Worlds' with a | between each world name to
-; exclude worlds from the idle trigger /send command.  Eg:
-; /set Idler_Exclude_Worlds=foo|bar|baz
-
 /require helplist.tf
 
 /help_add /help_idler keeps you connected when idle
@@ -18,6 +14,10 @@
      /echo /chkidle            Checks to see if the idle loop is running.%; \
      /echo /idler              Turns on the idler to send @@ to at periodic intervals%;\
      /echo /noidle             Turns off the idle loop
+
+; Set the variable 'Idler_Exclude_Worlds' with a | between each world name to
+; exclude worlds from the idle trigger /send command.  Eg:
+; /set Idler_Exclude_Worlds=foo|bar|baz
 
 /eval /set idlerpid $[idlerpid ? : -1]
 

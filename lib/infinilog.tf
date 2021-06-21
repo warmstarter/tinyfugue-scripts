@@ -5,6 +5,18 @@
 /set infinilog_url=https://github.com/Sketch/tinyfugue-scripts
 /set infinilog_version=1.0.1
 
+/require helplist.tf
+/require status.tf
+
+/require assoc.tf
+/require lisp.tf
+
+/help_add /help_infinilog Logs all worlds and rotates them daily
+
+/def -i help_infinilog = \
+  /echo -aB inifnilog help:%;\
+  /echo This needs a help write-up
+
 ; Important notes:
 ;  This script overrides the built-in /dc and /log so that:
 ;   /dc calls the inflog_hook_disconnect hook.
@@ -61,10 +73,6 @@
 ; * The timers break during Daylight Saving Time transitions.
 ; * TinyFugue doesn't automatically create directories for /log.
 
-/require status.tf
-
-/require assoc.tf
-/require lisp.tf
 
 ; Default to logging to ~/logs/auto/{WORLDNAME}.YYYY-MM-DD.txt
 /eval /set inflog_fileformat=%{inflog_fileformat-~/logs/auto/[W].%%F.txt}

@@ -1,5 +1,18 @@
 /loaded urlwatch.tf
 
+/set urlwatch_author=Vash@AnimeMUCK
+/set urlwatch_info=Grabs URLs from worlds and makes webpage
+/set urlwatch_url=
+/set urlwatch_version=1.0.0
+
+/require helplist.tf
+
+/help_add /help_urlwatch Grabs URLS from worlds and makes webpage
+
+/def -i help_urlwatch = \
+  /echo -aB urlwatch help:%;\
+  /echo This needs a help write-up
+
 ;---------------------------------------------------------------------------
 ; URL Watcher v1.05 - By Vash@AnimeMUCK ( sizer@san.rr.com )
 ;   Distribute at will! Though I'd like to hear of improvements.

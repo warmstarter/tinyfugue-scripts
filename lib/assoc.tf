@@ -7,6 +7,9 @@
 
 /require helplist.tf
 
+/require lisp.tf
+/require textencode.tf
+
 /help_add /help_assoc Association of key/value pairs
 
 /def -i help_assoc = \
@@ -21,9 +24,6 @@
     /echo Keys can contain any character. For the effect of several separate %;\
     /echo hashes/dictionaries/whatever, it's best to use a prefix. %;\
     /echo IE: /assoc users Cheetah=27  /assoc users Walker=5 
-
-/require lisp.tf
-/require textencode.tf
 
 ;;; Mostly for maintainability. Change outside this script not recommended.
 /set __assoc_prefix=assoc_

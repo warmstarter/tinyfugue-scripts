@@ -6,7 +6,7 @@
 /require cheecat.tf
 /require escaper.tf
 /require fugueedit.tf
-/require gagsidlemsg.tf
+/require gagidlemsg.tf
 /require helplist.tf
 /require idler.tf
 /require infinilog.tf

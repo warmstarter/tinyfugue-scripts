@@ -6,6 +6,11 @@
 /set repost_version=1.1.1
 
 /require helplist.tf
+/require squish.tf
+/require vworld.tf
+
+/require stack-q.tf
+/require textencode.tf
 
 /help_add /help_repost assists in reposting from logs
 
@@ -62,11 +67,6 @@
 ;
 ; Notice: This script requires the 'cut' and 'nl' coreutils. (optionally 'ls')
 
-/require squish.tf
-/require vworld.tf
-
-/require stack-q.tf
-/require textencode.tf
 
 /eval /set repost_queue_size=%{repost_queue_size-10}
 /eval /set repost_queue_length=%{repost_queue_length-0}
