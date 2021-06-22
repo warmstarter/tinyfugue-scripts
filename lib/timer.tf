@@ -29,7 +29,7 @@
     /test start := {timer_%{name}_start} %; \
     /let end=$[time()]%;\
     /let seconds=$[time() - {start}] %; \
-    /echo -aBCRed ## %{name}: Timer Stopped after \
+    /echo -aBCRed ## %{name}: \
       $[trunc(seconds/86400)] days $[mod(seconds/3600,24)] hours \
       $[mod(seconds/60,60)] mins $[mod(seconds,60)] secs. ##
 
