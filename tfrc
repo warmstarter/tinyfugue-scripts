@@ -130,11 +130,6 @@
 /load_histories
 /repeat -0:10 i /save_histories
 
-;;; ========== hook to change X title when go to new world
-/if ((%{TERM} =~ "xterm") | (%{TERM} =~ "xterm-256color") & (%{TMUX} !~ "" )) \
-  /def -i -h"WORLD" tmux_fg_title_hook=/tmux_title TinyFugue - ${world_name} (${world_character})%; \
-/endif
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                            END OF FILE                            ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,53 +1,41 @@
-;;; Make pages, multipages, and whispers stand out
-;;; Gwen: I like to make my pages/multipages/whispers that I send out hilighted
-;;; also, not just the ones people send to me. To discriminate between them,
-;;; I use the non-bold form of the color I use for the incoming communication
-;;; of the same type. This mostly helps me visually seperate any remote
-;;; conversation from action in my location.
+; Pages
+/def -i Fp2 -aBCcyan -mregexp -t'^(.+ pages:) .+' tiny.page1
+/def -i Fp2 -aBCcyan -mregexp -t'^(From afar,) .+' tiny.page2
+/def -i Fp2 -aBCcyan -mregexp -t'^(You paged,) .+' tiny.page3
+/def -i Fp2 -aBCcyan -mregexp -t'^(Long distance to) .+' tiny.page4
+/def -i Fp2 -aBCcyan -mregexp -t'^(To \(.+\), .+ pages:) .+' tiny.page5
 
-;bold cyan color pages
-/def -i -Fp2 -aBCcyan -t'* pages[,:] *' hl_page1
-/def -i -Fp4 -aBCcyan -t'^You sense that * is looking for you in *' hl_page2
-/def -i -Fp4 -aBCcyan -t'^From afar, *' hl_page3
-/def -i -Fp2 -aCcyan -t'^Long distance to *' hl_page4
-/def -i -Fp2 -aCcyan -t'^You paged *' hl_page5
+; Page errors
+/def -i Fp2 -aBCred -mregexp -t'^(I don\'t recognize .+)$' tiny.pageerr1
+/def -i Fp2 -aBCred -mregexp -t'^(No one to page.)$' tiny.pageerr2
+/def -i Fp2 -aBCred -mregexp -t'^(Sorry, .+ is not connected.)$' tiny.pageerr3
 
-;bold green multi-pages
-/def -i -Fp3 -aBCgreen -t'* pages (*) *' hl_mpage1
-/def -i -Fp5 -aBCgreen -mregexp -t"(multipages|multi-pages)" hl_mpage2
-/def -i -Fp5 -aCgreen -mregexp -t"(multipage|multi-page)" hl_mpage3
-/def -i -Fp6 -aBCgreen -t'^(To: *)' hl_mpage4
-/def -i -Fp4 -aCgreen -t'^(To: *) Long Distance, *' hl_mpage5
-/def -i -Fp5 -aCgreen -t'^(To: *) * pages: *' hl_mpage6
+; General Errors
+/def -i -Fp2 -aBCred -mregexp -t'^Huh\?.*' tiny.helperr
+/def -i -Fp2 -aBCred -mregexp -t'^(Idle|Reject|Away) message from [A-Za-z ]*:' tiny.pageerr
+/def -i -Fp2 -aBCred -mregexp -t'^I don\'t see that here\.' tiny.nothere
+/def -i -Fp2 -aBCred -mregexp -t'^Permission denied.' tiny.noperm
+/def -i -Fp2 -aBCred -mregexp -t'^No entry for \'.*\'.' tiny.nohelp
+/def -i -Fp2 -aBCred -mregexp -t'^You can\'t go that way.' tiny.noway
+/def -i -Fp2 -aBCred -mregexp -t'^Sorry.*' tiny.sorry
+/def -i -Fp2 -aBCred -mregexp -t'^Invalid.*' tiny.invalid
+/def -i -Fp2 -aBCred -mregexp -t'^Whisper to whom\?' tiny.whispererr
 
 ;bold blue color whispers
-/def -i -Fp2 -aBCblue -t'* whispers[,:] *' hl_whisper1
-/def -i -Fp3 -aBCblue -t'^You sense *' hl_whisper2
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;; Full-line highlights (odds and ends)
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;When someone triggers a character @adesc (bold magenta)
-/def -Fp5 -aBCmagenta -t'* looked at *.' hl_adesc
-/def -Fp5 -aBCmagenta -t'* is looking at *.' hl_adesc2
+/def -i -Fp2 -aBCblue -mregexp -t'^* whispers[,:] *' hl_whisper1
+/def -i -Fp2 -aBCblue -mregexp -t'^You sense *' hl_whisper2
 
 ;<OOC> Code
-/def -Fp4 -aBCyellow -t'^(<OOC>|<<OOC>>) *' hl_ooc
+/def -i -Fp2 -aBCyellow mregexp -t'^(<OOC>|<<OOC>>) .+' hl_ooc
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
 ;;; "Partial" highlights of importance
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;Channels
 ;Any '[ ]' or '>'
-/def -i -Fp9 -P0BCred -F -t'^\\[*\\]' tiny_sh1
-/def -i -Fp8 -P0BCred -mregexp -F -t"^\\[.*\\]" tiny_sh2
-/def -i -Fp8 -P0BCred -mregexp -F -t"^[A-Za-z0-9 _-]*>" tiny_sh3
+/def -i -Fp2 -P0BCblue -mregexp -t'^\\[*\\]' tiny_sh1
+/def -i -Fp2 -P0BCblue -mregexp -t"^\\[.*\\]" tiny_sh2
+/def -i -Fp2 -P0BCblue -mregexp -t"^[A-Za-z0-9 _-]*>" tiny_sh3
 
 ; Table-talk conversation partially in white
-/def -i -Fp7 -P0xBCwhite -t'^(At|In) (your|the) [^,:]*[,:]' par_place1
+/def -i -Fp2 -P0xBCwhite -mregexp -t'^(At|In) (your|the) [^,:]*[,:]' par_place1
+
