@@ -2,7 +2,7 @@
 ;;;                           TFRC file                             ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-/set LASTMOD=TFRC last modified: 06/21/2021
+/set LASTMOD=TFRC last modified: 06/22/2021
 
 /def TFLIBDIR=/usr/local/share/tf-lib
 /set TFDIR=~/tf
@@ -11,10 +11,6 @@
 /eval /set LIBDIR=%{TFDIR}/lib
 /eval /set PREFDIR=%{TFDIR}/prefs
 /eval /set TFPATH=%{TFLIBDIR} %{LIBDIR} %{PREFDIR}
-
-;;; Tthis might not be needed or even used, thought maybe for /note
-;;; but it looks like no.
-/eval /set TFPREFIX=%{TFDIR}/tiny.
 
 ;;; Can pop up in a separate window if a GUI program or other.
 /set SHELL=/bin/bash
