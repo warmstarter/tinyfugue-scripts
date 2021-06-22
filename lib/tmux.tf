@@ -11,7 +11,7 @@
 
 /def -i help_tmux = \
   /echo -aB tmux help: %; \
-  /echo /tmux_title <title>           Sets the <title> of the widnow %; \
+  /echo /tmux_title <title>           Sets the <title> of the window %; \
   /echo /tmux_split [up|down]         Splits the tmux pane in selected manner %; \
   /echo /tmux_splitpc                 Splits the tmux pane 50%% larger 
 
