@@ -120,7 +120,7 @@
       /else \
         /if ($(/quote -S -decho !ls -dF %{file} > /dev/null;echo \$?) =~ '0')\
           /echo %% No such regular file \"%{file}\". Partial matches follow:%;\
-          /quote -S -decho !"ls -dF %{file}"%;\
+	  /quote -S -decho !"ls -dF %{file}"%;\
         /elseif ($(/quote -S -decho !ls -dF *%{file}* > /dev/null;echo \$?) =~ '0')\
           /echo %% No such regular file \"%{file}\". Partial matches follow:%;\
           /quote -S -decho !"ls -dF *%{file}*"%;\
@@ -134,7 +134,7 @@
   /endif%;\
   /unset _repost_file
 
-;;; " Fix for vim syntax highlighting
+;; " Fix for vim syntax highlighting
 
 /def -i _repost_message_foregrounded=\
   /echo -p %% To change the output prefix, type "@{B}PREFIX <new prefix>@{n}".%;\
@@ -184,8 +184,8 @@
     /unset _repost_file%;\
   /elseif ({-1} =/ ">REROUTE>*") \
     /eval /set _repost_prefix=%%{_repost_prefix_$[textencode({origin})]}%;\
-    /echo -w%{1} $[substr({-1},strlen(">REROUTE>"))]%;\
-    /send -w%{origin} $[strcat({_repost_prefix},substr({-1},strlen(">REROUTE>")))]%;\
+    /echo -w%{1} -- $[substr({-1},strlen(">REROUTE>"))]%;\
+    /send -w%{origin} -- $[strcat({_repost_prefix},substr({-1},strlen(">REROUTE>")))]%;\
     /unset _repost_prefix%;\
   /elseif ({-1} =/ "PREFIX *") \
     /let newprefix=$[substr({-1},strlen("PREFIX "))]%;\

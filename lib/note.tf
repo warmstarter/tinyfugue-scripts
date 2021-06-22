@@ -17,7 +17,7 @@
 
 /set notelist=
 /set _linecount=
-/eval /set notefile=%{TFDIR}/tiny.note
+/eval /set notefile=%{TFDIR}/mynotes.tf
 
 /test (handle:=tfopen({notefile},"r"))
 /while (tfread(handle, _linecount) >= 0) \

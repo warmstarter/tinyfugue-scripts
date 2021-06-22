@@ -3,7 +3,7 @@
 /set vwstatus_author=QBFreak
 /set vwstatus_info=Status Bar for Virtual Worlds
 /set vwstatus_url=
-/set vwstatus_version=2.0.0
+/set vwstatus_version=2.2.0
 
 /require helplist.tf
 /require socket.tf
@@ -20,9 +20,9 @@
 
 ;;; the attributes to put before the fg, bg (no activity), or bg (has activity) world names
 /set vw_tablist_fg_world_attrs=@{Cyellow,Cbgrgb001}
-/set vw_tablist_bgworld_attrs=@{Ccyan,Cbgrgb001}
+/set vw_tablist_bgworld_attrs=@{Cwhite,Cbgrgb001}
 /set vw_tablist_bgmore_world_attrs=@{Cbrightred,Cbgrgb001}
-/set vw_tablist_tab_attrs=@{hCwhite,Cbgrgb001}
+/set vw_tablist_tab_attrs=@{Ccyan,Cbgrgb001}
 ;;; seperator between tabs within a world. 
 ;;;   - note: changing this and the next pair could well break certain aspects
 ;;;           of the tabs screen fitting part (I'll fix eventually)
@@ -133,3 +133,14 @@
 
 /def -i vw_update_activity_delayed = \
      /repeat -1 1 /vw_update_activity
+
+;;; These need to get redefined to call vw_update_activity
+;;; otherwise in some situations when scrolling down, the
+;;; status bar will not update.
+
+/def key_pgdn = \
+     /dokey_pgdn %; \
+     /vw_update_activity
+/def key_tab = \
+     /dokey page %; \
+     /vw_update_activity

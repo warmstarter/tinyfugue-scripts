@@ -29,13 +29,6 @@
   /echo You can have any number of these stacks, they honor %{kbnum} - %;\
   /echo That is, <esc><num><esc><up or down> %;\
 
-;;; probably needs new defs here due to conflicts
-
-/purge -i key_esc_down
-/purge -i key_esc_up
-/def -i key_esc_down = /kb_push %; /kbd_pop
-/def -i key_esc_up = /kbd_push %; /kb_pop
-
 /def -i kb_push = \
     /let n=$[+kbnum]%; \
     /if (n < 0) \
@@ -83,3 +76,10 @@
 	    /unset _kbd_stack_%{n}_%%{_kbd_stack_%{n}_top}%%;\
 	    /set _kbd_stack_%{n}_top=$$[_kbd_stack_%{n}_top - 1]%;\
     /endif
+
+;;; probably needs new defs here due to conflicts
+
+/purge -i key_esc_down
+/purge -i key_esc_up
+/def -i key_esc_down = /kb_push %; /kbd_pop
+/def -i key_esc_up = /kbd_push %; /kb_pop

@@ -3,7 +3,7 @@
 /set idler_author=Gwen Morse - Christian J. Robinson - heptite@gmail.com
 /set idler_info=TinyFugue no-idle script.
 /set idler_url=http://christianrobinson.name/programming/tf/
-/set idler_version=3.0.0
+/set idler_version=3.1.0
 
 /require helplist.tf
 
@@ -20,7 +20,8 @@
 ; exclude worlds from the idle trigger /send command.  Eg:
 ; /set idler_blacklist=foo|bar|baz
 
-/eval /set idlerpid $[idlerpid ? : -1]
+; If we're starting this at the bottom setting the pid here is unnecessary
+; /eval /set idlerpid $[idlerpid ? : -1]
 
 /def idler = \
         /if (%1 =~ "") \
@@ -35,9 +36,9 @@
 
 /def -i idler_status = \
   /if ({idlerpid} != -1) \
-    /echo %% idler loop is enabled. %; \
-  /else \
     /echo %% idler loop is disabled. %; \
+  /else \
+    /echo %% idler loop is enabled. %; \
   /endif
 
 /def -i idler_disable = \

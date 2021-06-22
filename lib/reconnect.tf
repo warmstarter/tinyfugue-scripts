@@ -2,7 +2,7 @@
 
 /set reconnect_author=QBFreak
 /set reconnect_info=Reconnects to worlds that get disconnected
-/set reconnect_url=
+/set reconnect_url=https://github.com/QBFreak/NightMAREbot
 /set reconnect_version=1.0.0
 
 /require helplist.tf
@@ -10,8 +10,13 @@
 /help_add /help_reconnect Reconnects to worlds that get disconnected
 
 /def -i help_reconnect = \
-  /echo -aB reconnect help:%;\
-  /echo This needs a help write-up
+  /echo -aB reconnect help: %; \
+  /echo Waits in the background for a disconnect and then %; \
+  /echo automatically reconnects. %; \
+  /echo %; \
+  /echo /autoreconnect status %; \
+  /echo /autoreconnect enable %; \
+  /echo /autoreconnect disable
 
 /def -Fp1 -ag -E'!{intentional_disconnect} & {autoreconnect_enable}' -hDISCONNECT -T'tiny.*' autoreconnect_hook = /connect %1
 /def -Fp1 -ag -E'{intentional_disconnect} & {autoreconnect_enable}' -hDISCONNECT -T'tiny.*' reset_autoreconnect = /set intentional_disconnect=0

@@ -1,9 +1,9 @@
 /loaded timer.tf
 
-/set timer_author=marvtf
+/set timer_author=Marvin Batmud
 /set timer_info=Sets or displays a timer
-/set timer_url=
-/set timer_version=1.2.0
+/set timer_url=https://github.com/sbaker48/marvtf/tree/master
+/set timer_version=1.5.0
 
 /require helplist.tf
 
@@ -16,9 +16,11 @@
   /echo %; \
   /echo /timer_start   <timer>    Starts a <timer> %; \
   /echo /timer_stop    <timer>    Stops and displays a <timer> %; \
-  /echo /timer_display <timer>    Displays a <timer>
+  /echo /timer_display <timer>    Displays a <timer> without stopping it
 
-/def -i timer_start = /eval /set timer_%{1}_start=$[time()] %; \
+/def -i timer_start = \
+    /let name=%{1} %; \
+    /eval /set timer_%{name}_start=$[time()] %; \
     /echo -aBCRed ## %{name}: Timer Started ##
 
 /def -i timer_display = \
@@ -26,9 +28,10 @@
     /let start= %; \
     /test start := {timer_%{name}_start} %; \
     /let end=$[time()]%;\
-    /let min=$[trunc(({end}-{start})/60)] %; \
-    /let sec=$[mod({end}-{start},60)] %; \
-    /echo -aBCRed ## %{name}: %{min} min, %{sec} sec ##
+    /let seconds=$[time() - {start}] %; \
+    /echo -aBCRed ## %{name}: \
+      $[trunc(seconds/86400)] days $[mod(seconds/3600,24)] hours \
+      $[mod(seconds/60,60)] mins $[mod(seconds,60)] secs. ##
 
 /def -i timer_stop = \
     /timer_display %{1} %; \
