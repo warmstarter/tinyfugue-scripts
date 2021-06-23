@@ -3,7 +3,7 @@
 /set note_author=Tero Koskinen aka Gurb - tkoskine@students.cc.tut.fi
 /set note_info=Command for taking notes to a file
 /set note_url=
-/set note_version=1.2.0
+/set note_version=1.3.0
 
 /require helplist.tf
 

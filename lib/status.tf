@@ -2,6 +2,8 @@
 
 /loaded status.tf
 
+/require tfstatus.tf
+
 ;/require -q activity_status.tf
 
 ;; vwstatus, ininilog, and kaispell also modify the status area

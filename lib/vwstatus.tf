@@ -8,6 +8,23 @@
 /require helplist.tf
 /require socket.tf
 /require status.tf
+/require vworld.tf
+
+;;; This is generall incompatible with activity_status.tf and activity_status2.tf
+;;; It is possible to run both activity_status an vwstatus on separate status lines,
+;;; but there doesn't seem to be much point in doing so outside of debugging.
+
+;;; To make full use of vwstatus, it's expected that your Virtual Worlds are named
+;;; in the format <world>:<virtual> in order for it to be aware of which type each
+;;; is as well as to pull out a shortened name.
+
+;;; It's recommended that virtual worlds have a prefix for their type like 'Virtual'
+;;; as there are likely other scripts that you will want to have treat these worlds
+;;; differently. There is nothing within this script that requires that, though.
+
+;;; TinyFugue-Rebirth has a bug in their parser that will drop the color on ']' within
+;;; the statusbar. This issue does not exist within other variants oF TF5, but I am
+;;; working with them to resolve it.
 
 /require textencode.tf
 /require textutil.tf

@@ -23,8 +23,8 @@
   /echo It has been modified to include additional features. %; \
   /echo vwstatus is an optional status bar that can be use with this.
 
-;;; NOTE: this assumes virtual worlds are named like:
-; <world>:<virtual>
+;;; If you plan to use this with vwstatus, it is expected for virtual worlds to
+;;; use the following naming scheme: <world>:<virtual>
 
 ;;; /vw_create [-s<send_handler>] [-t<subtype>] <World Name>
 ; Creates a virtual world and ensures it's connected.

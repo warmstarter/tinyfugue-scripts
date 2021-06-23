@@ -1,8 +1,8 @@
 ; Pages
 /def -i -Fp2 -aBCcyan -mregexp -t'^(.+ pages[:,]) .+' tiny.page1
 /def -i -Fp2 -aBCcyan -mregexp -t'^(From afar,) .+' tiny.page2
-/def -i -Fp2 -aBCcyan -mregexp -t'^(You paged,) .+' tiny.page3
-/def -i -Fp2 -aBCcyan -mregexp -t'^(You paged .+ with) .+' tiny.page4 
+/def -i -Fp2 -aCcyan -mregexp -t'^(You paged,) .+' tiny.page3
+/def -i -Fp2 -aCcyan -mregexp -t'^(You paged .+ with) .+' tiny.page4 
 /def -i -Fp2 -aBCcyan -mregexp -t'^(Long distance to) .+' tiny.page5
 /def -i -Fp2 -aBCcyan -mregexp -t'^(To \(.+\), .+ pages:) .+' tiny.page6
 
