@@ -27,6 +27,7 @@
 /require timer.tf
 /require tmux.tf
 /require uptime.tf
+/require utilities.tf
 /require urlwatch.tf
 /require vworld.tf
 /require vwstatus.tf
