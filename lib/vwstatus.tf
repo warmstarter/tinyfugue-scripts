@@ -8,7 +8,6 @@
 /require helplist.tf
 /require socket.tf
 /require status.tf
-/require vworld.tf
 
 ;;; This is generall incompatible with activity_status.tf and activity_status2.tf
 ;;; It is possible to run both activity_status an vwstatus on separate status lines,
@@ -44,10 +43,14 @@
 ;;;   - note: changing this and the next pair could well break certain aspects
 ;;;           of the tabs screen fitting part (I'll fix eventually)
 ;;; Definitely keep the sep and more bits as is, except for colors
+;The better options for separators are commented out.
+;Their purpose is to test for bleed that has been a historical part of TF.
 /set vw_tablist_tab_sep=@{Cgray}|
+;/set vw_tablist_tab_sep=@{Cgray,Cbgrgb001}|
 ;;; seperators between entire worlds.
 /set vw_tablist_world_sep_l=@{Cgray,Cbgrgb001}[
 /set vw_tablist_world_sep_r=@{Cgray}]
+;/set vw_tablist_world_sep_r=@{Cgray,Cbgrgb001}]
 ;;; Left and Right side of "more" numbers
 /set vw_tablist_more_l=:
 /set vw_tablist_more_r=
@@ -133,8 +136,8 @@
 /set status_var_vw_tabs vw_build_tabs()
 
 /status_add -r0 -B vw_tabs
-/def -qi -Fp2147483647 -hACTIVITY|MORE|WORLD vw_update_activity_status = /repeat -0 1 /vw_update_activity
-/def -p0 -aAg -hPREACTIVITY|ACTIVITY|BGTEXT|MORE|WORLD|CONNECT ignore_alerts
+/def -qi -Fp2147483647 -hACTIVITY|WORLD vw_update_activity_status = /repeat -0 1 /vw_update_activity
+/def -p0 -aAg -hPREACTIVITY|ACTIVITY|MORE|BGTEXT|WORLD|CONNECT ignore_alerts
 
 /def -i vw_update_activity = \
     /status_edit -r0 vw_tabs
