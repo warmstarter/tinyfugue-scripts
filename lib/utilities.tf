@@ -430,7 +430,7 @@
   /DONE %;\
   /RETURN element_;
 
-========================================================================
+;========================================================================
 ; searchstr_2array()
 ;
 ; Searches for a value in all dimensions of a virtual array and returns
@@ -765,13 +765,25 @@
 ;
 ; x     : Value returned with commas. Example 1,345 from 1345.
 ; value : Any number.
+;
+; NOTES: x can also be floating point.
 ;==============================================================================
 /def num2commas = \
   /let st_ %{1} %;\
-  /let count_ $[strlen(st_)] %;\
+  /let pos_ 0 %;\
+  /let count_ 0 %;\
   /let count2_ 0 %;\
   /let st2_ 0 %;\
+  /let frac_ 0 %;\
   /test st2_ := '' %;\
+  /test pos_ := strstr(st_, '.') %;\
+  /IF (pos_ > -1) \
+    /test count_ := pos_ %;\
+    /test frac_ := substr(st_, pos_) %;\
+  /ELSE \
+    /test count_ := strlen(st_) %;\
+    /test frac_ := '' %;\
+  /ENDIF %;\
   /WHILE (--count_ >= 0) \
     /IF ( (count2_ = 3) & (substr(st_, count_, 1) !~ '-') ) \
       /test st2_ := strcat(',', st2_) %;\
@@ -780,7 +792,7 @@
     /test st2_ := strcat(substr(st_, count_, 1), st2_) %;\
     /test ++count2_ %;\
   /DONE %;\
-  /return st2_
+  /return strcat(st2_, frac_)
 
 ;==============================================================================
 ; send_macro()
@@ -801,24 +813,37 @@
   /undef send_macro2
 
 ;==============================================================================
-; strip_space()
+; strip_left()
 ;
 ; Strips all leading spaces from a string.
 ; USAGE:
-; x := strip_space("string")
+; x := strip_left("string")
 ;
 ; x        : Returned "string" with no leading spaces.
 ; "string" : Any string
 ;==============================================================================
-/def strip_space = \
+/def strip_left = \
   /let st_ 0 %;\
   /test st_ := {1} %;\
-  /let st2_ 0 %;\
   /let count_ -1 %;\
-  /test st2_ := '' %;\
-  /WHILE (++count_ <= strlen(st_) & substr(st_, count_, 1) =~ ' ') \
+  /let len_ $[strlen(st_)] %;\
+  /WHILE ( (++count_ < len_) & (substr(st_, count_, 1) =~ ' ') ) \
   /DONE %;\
-  /return substr(st_, count_, 255)
+  /return substr(st_, count_)
+
+;==============================================================================
+; strip_right()
+;
+; Strips all trailing spaces from a string.
+; USAGE:
+; x := strip_right("string")
+;
+; x        : Returned "string" with no leading spaces.
+; "string" : Any string
+;==============================================================================
+/def strip_right = \
+  /let st_=%* %;\
+  /RETURN st_
 
 ;==============================================================================
 ; parse_string()

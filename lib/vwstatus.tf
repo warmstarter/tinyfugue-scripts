@@ -48,8 +48,8 @@
 /set vw_tablist_tab_sep=@{Cgray}|
 ;/set vw_tablist_tab_sep=@{Cgray,Cbgrgb001}|
 ;;; seperators between entire worlds.
-/set vw_tablist_world_sep_l=@{Cgray,Cbgrgb001}[
-/set vw_tablist_world_sep_r=@{Cgray}]
+/set vw_tablist_world_sep_l=@{Cgray,Cbgrgb001}<
+/set vw_tablist_world_sep_r=@{Cgray}>
 ;/set vw_tablist_world_sep_r=@{Cgray,Cbgrgb001}]
 ;;; Left and Right side of "more" numbers
 /set vw_tablist_more_l=:
