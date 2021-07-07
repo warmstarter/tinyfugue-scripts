@@ -22,7 +22,7 @@
 /status_rm @active
 /status_rm @more
 
-/set status_attr Crgb035,Cbgrgb001
+/set status_attr Crgb035,Cbgrgb005
 /set status_height=2
 /set status_pad=
 

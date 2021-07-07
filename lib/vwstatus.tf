@@ -35,21 +35,21 @@
   /echo This needs a help write-up %; \
 
 ;;; the attributes to put before the fg, bg (no activity), or bg (has activity) world names
-/set vw_tablist_fg_world_attrs=@{Cyellow,Cbgrgb001}
-/set vw_tablist_bgworld_attrs=@{Cwhite,Cbgrgb001}
-/set vw_tablist_bgmore_world_attrs=@{Cbrightred,Cbgrgb001}
-/set vw_tablist_tab_attrs=@{Ccyan,Cbgrgb001}
+/set vw_tablist_fg_world_attrs=@{Cyellow,Cbgrgb005}
+/set vw_tablist_bgworld_attrs=@{Cwhite,Cbgrgb005}
+/set vw_tablist_bgmore_world_attrs=@{Cbrightred,Cbgrgb005}
+/set vw_tablist_tab_attrs=@{Ccyan,Cbgrgb005}
 ;;; seperator between tabs within a world. 
 ;;;   - note: changing this and the next pair could well break certain aspects
 ;;;           of the tabs screen fitting part (I'll fix eventually)
 ;;; Definitely keep the sep and more bits as is, except for colors
 ;The better options for separators are commented out.
 ;Their purpose is to test for bleed that has been a historical part of TF.
-/set vw_tablist_tab_sep=@{Cgray}|
+/set vw_tablist_tab_sep=@{Cgray,Cbgrgb005}|
 ;/set vw_tablist_tab_sep=@{Cgray,Cbgrgb001}|
 ;;; seperators between entire worlds.
-/set vw_tablist_world_sep_l=@{Cgray,Cbgrgb001}<
-/set vw_tablist_world_sep_r=@{Cgray}>
+/set vw_tablist_world_sep_l=@{Cgray,Cbgrgb005}<
+/set vw_tablist_world_sep_r=@{Cgray,Cbgrgb005}>
 ;/set vw_tablist_world_sep_r=@{Cgray,Cbgrgb001}]
 ;;; Left and Right side of "more" numbers
 /set vw_tablist_more_l=:
