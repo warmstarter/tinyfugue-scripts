@@ -16,7 +16,7 @@
 /require kbdoublestack.tf
 /require keys.tf
 /require note.tf
-/require reconnect.tf
+;/require reconnect.tf
 /require repost.tf
 /require rwhen.tf
 /require socket.tf
