@@ -40,7 +40,7 @@
 /set oldslash=off
 /set pedantic=off
 /set ptime=0
-/set quiet=on
+/set quiet=off
 /set shpause=off
 /set snarf=on
 /set tabsize=4
